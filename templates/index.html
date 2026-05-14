@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Page title shown in browser tab -->
+  <title>PH Dashboard</title>
+
+  <!-- Main stylesheet -->
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+
+  <!-- SheetJS: Parses CSV / Excel files into usable JS data -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+
+<!-- =========================================================
+  SIDEBAR NAVIGATION (fixed left panel)
+========================================================= -->
+<div class="sidebar">
+  <h2>Homology Dashboard</h2>
+
+  <ul class="nav">
+    <li class="nav-item active" data-page="upload">
+      Data
+    </li>
+    
+    <li class="nav-item" data-page="analytics">Analytics</li>
+    
+  </ul>
+</div>
+
+<!-- =========================================================
+  MAIN CONTENT AREA
+========================================================= -->
+<div class="main">
+
+  <!-- Header -->
+  <div class="header">
+    <h1 id="pageTitle">Data</h1>
+  </div>
+
+  <div class="content">
+
+    <div class="page active-page" id="upload-page">
+        <!-- =====================================================
+          FILE UPLOAD SECTION
+        ====================================================== -->
+        <div class="card">
+          <h3>Upload CSV / Excel</h3>
+
+          <!-- Drag & Drop Zone -->
+          <div id="dropZone" class="drop-zone">
+            Drag & Drop file here or click to upload
+
+            <!-- Hidden file input (triggered by clicking drop zone) -->
+            <input type="file" id="fileInput" accept=".csv,.xlsx,.xls">
+          </div>
+
+          <!-- Error message -->
+          <p id="errorMsg" class="error"></p>
+
+          <!-- Loading spinner while parsing -->
+          <div id="spinner" class="spinner hidden"></div>
+        </div>
+
+        <!-- =====================================================
+          FILE SUMMARY PANEL (hidden until file is loaded)
+        ====================================================== -->
+        <div id="fileSummary" class="card hidden">
+
+          <h2 class="summary-title">File Summary</h2>
+
+          <!-- Basic file metadata -->
+          <div class="summary-grid">
+            <div class="summary-column">
+              <span id="fileName">Name</span>
+              <span id="fileSize"></span>
+            </div>
+          
+            <div class="summary-column">
+              <span>Rows: <b id="rowCount">0</b></span>
+              <span>Cols: <b id="colCount">0</b></span>
+            </div>
+          </div>
+
+          <!-- Data quality overview -->
+          <div class="issues-panel">
+
+            <div class="issue-box total">
+              <h2 id="totalIssues">0</h2>
+              <p>Total Issues</p>
+            </div>
+
+            <div class="issue-box missing">
+              <h2 id="missingCount">0</h2>
+              <p>Missing</p>
+            </div>
+
+            <div class="issue-box invalid">
+              <h2 id="invalidCount">0</h2>
+              <p>Invalid</p>
+            </div>
+
+          </div>
+
+          <!-- Preview controls -->
+          <div class="preview-controls">
+            <label>
+              Preview Rows:
+              <input type="number" id="previewCount" value="10" min="1" max="100">
+            </label>
+
+            <button id="togglePreviewBtn">Show Preview ▼</button>
+          </div>
+
+          <!-- Expandable preview panel -->
+          <div id="previewSection">
+
+            <!-- Scroll container -->
+            <div class="preview-inner">
+
+              <!-- Preview table -->
+              <div class="table-container">
+                <table id="previewTable"></table>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- =====================================================
+          FULL DATA TABLE
+        ====================================================== -->
+        <div class="table-container hidden">
+          <table id="dataTable"></table>
+        </div>
+    </div>
+
+
+    <div class="page" id="analytics-page">
+      <div class="card">
+        <h2>Analytics</h2>
+        <p>Charts and statistics go here.</p>
+        <button id="sendBtn">Run Analytics</button>
+        <img src="/diagram">
+      </div>
+
+      <!-- =====================================================
+          FILE SUMMARY PANEL (hidden until file is loaded)
+        ====================================================== -->
+        <div id="fileSummary" class="card hidden">
+
+          <h2 class="summary-title">File Summary</h2>
+
+          <!-- Basic file metadata -->
+          <div class="summary-inline">
+            <span id="fileName"></span>
+            <span id="fileSize"></span>
+            <span>Rows: <b id="rowCount">0</b></span>
+            <span>Cols: <b id="colCount">0</b></span>
+          </div>
+
+          <!-- Data quality overview -->
+          <div class="issues-panel">
+
+            <div class="issue-box total">
+              <h2 id="totalIssues">0</h2>
+              <p>Total Issues</p>
+            </div>
+
+            <div class="issue-box missing">
+              <h2 id="missingCount">0</h2>
+              <p>Missing</p>
+            </div>
+
+            <div class="issue-box invalid">
+              <h2 id="invalidCount">0</h2>
+              <p>Invalid</p>
+            </div>
+
+          </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!-- Main application logic -->
+<script src="{{ url_for('static', filename='JS/script.js') }}"></script>
+</body>
+</html>

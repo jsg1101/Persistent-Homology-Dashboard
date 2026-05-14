@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    
+  <title> {% block page_title %}{% endblock %} </title>
+  {% block favicon %}{% endblock %}
+  <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+  {% block style %}{% endblock %}
+    
+</head>
+
+<body>
+
+<!-- Title Bar -->
+<div class = "titlebar">
+  
+  <p class ="header-emoji">
+    {% block left_header_image %}{% endblock %}
+  </p>
+
+  <div class = "header-content">
+
+    <h1 class = "title">{% block header_title %}{% endblock %}</h1>
+
+  </div>
+    
+  <p class ="header-emoji">
+    {% block right_header_image %}{% endblock %}
+  </p>
+
+</div>
+
+
+<div class="topnav">
+    <!-- <a class="active" href="{{ url_for('home') }}">Home</a> -->
+    <a {% block home_active %} {% endblock %} href="{{ url_for('home') }}">Home</a>
+    <a {% block tropical_active %} {% endblock %} href="{{ url_for('tropical') }}">Tropical</a>
+    <a {% block amoeba_active %} {% endblock %} href="{{ url_for('amoeba') }}">Amoebas</a>
+    <a {% block elliptic_curve_active %} {% endblock %} href="{{ url_for('elliptic_curve') }}">Elliptic Curves</a>
+    <a {% block collatz_active %} {% endblock %} href="{{ url_for('collatz') }}">Collatz</a>
+    <a {% block rsa_active %} {% endblock %} href="{{ url_for('rsa') }}">RSA</a>
+    <a {% block ramsey_active %} {% endblock %} href="{{ url_for('ramsey') }}">Ramsey</a>
+    <a {% block hadamard_active %} {% endblock %} href="{{ url_for('hadamard') }}">Hadamard</a>
+    
+    
+    
+    <!-- <a href="#about">About</a> -->
+</div>
+
+{% block page_content %}{% endblock %}
+
+{% block scripts %}{% endblock %}
+</body>
+</html> 

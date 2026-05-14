@@ -1,0 +1,294 @@
+/* =========================================================
+  BASE / GLOBAL RESET
+========================================================= */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #6286bc;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+  SIDEBAR (fixed navigation)
+========================================================= */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 200px;
+  height: 100vh;
+
+  background: #1e293b;
+
+  background-image: url(/static/images/bg_sidebar.svg)  ;
+  
+  /* background-image: url("static/images/bg.svg"); */
+  /* background-image: "images/bg_sidebar.svg"; */
+  background-size: cover;        /* fills entire sidebar */
+  background-repeat: no-repeat;
+  background-position: center;
+
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Navigation list */
+.nav {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.nav li {
+  padding: 10px;
+  cursor: pointer;
+  color: #cbd5f5;
+}
+
+.nav li:hover {
+  background: #334155;
+}
+
+.nav li.active {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+/* =========================================================
+  MAIN LAYOUT
+========================================================= */
+.main {
+  margin-left: 200px;
+  min-height: 100vh;
+
+
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+
+  width:100%;
+  /* width: auto; */
+  /* min-width: 100vw;
+  max-width: 100vw; */
+  background:aliceblue;
+  box-shadow: 3px 3px 5px black;
+  /* background: #1e293b; */
+  /* background:cornflowerblue; */
+  padding: 15px;
+
+  /* border: 5px solid ;
+  border-color: #334155; */
+  /* border-radius: 12%; */
+  /* border-bottom: 5px solid #ddd; */
+
+  /* background-image: url(/static/images/bg_header.svg)  ; */
+}
+
+.content {
+  padding: 20px;
+}
+
+.page {
+  display: none;
+}
+
+.active-page {
+  display: block;
+}
+
+/* =========================================================
+  CARD COMPONENT
+========================================================= */
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+  box-shadow: 3px 3px 5px black;
+}
+
+/* =========================================================
+  FILE UPLOAD (Drag & Drop)
+========================================================= */
+.drop-zone {
+  padding: 25px;
+  border: 2px dashed #94a3b8;
+  
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.drop-zone input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.drop-zone.dragover {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+}
+
+/* =========================================================
+  LOADING SPINNER
+========================================================= */
+.spinner {
+  margin: 10px auto;
+  width: 35px;
+  height: 35px;
+  border: 4px solid #ddd;
+  border-top: 4px solid #38bdf8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
+}
+
+/* =========================================================
+  FILE SUMMARY
+========================================================= */
+.summary-title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.summary-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap; /* makes it responsive */
+  align-items: flex-start;
+  font-size: 14px;
+}
+
+.summary-column {
+  display: flex;
+  flex-direction: column; /* stack items vertically */
+  gap: 6px;
+  min-width: 140px;
+}
+
+/* Optional: better mobile layout */
+@media (max-width: 480px) {
+  .summary-grid {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* =========================================================
+  DATA QUALITY (ISSUE BOXES)
+========================================================= */
+.issues-panel {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.issue-box {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.issue-box:hover {
+  transform: translateY(-2px);
+}
+
+.issue-box h2 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.issue-box p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Color mapping (matches table cells) */
+.issue-box.missing {
+  background: #fef3c7;
+  border: 1px solid #facc15;
+}
+
+.issue-box.invalid {
+  background: #fecaca;
+  border: 1px solid #dc2626;
+}
+
+.issue-box.total {
+  background: #e2e8f0;
+}
+
+/* =========================================================
+  PREVIEW PANEL (collapsible + animated)
+========================================================= */
+#previewSection {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.preview-expanded {
+  max-height: 650px;
+}
+
+/* Controls row */
+.preview-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Scrollable preview area */
+.preview-inner {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+/* =========================================================
+  TABLE STYLING
+========================================================= */
+.table-container {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 6px;
+}
+
+/* Data quality highlighting */
+.cell-missing { background: #fef3c7; }
+.cell-invalid { background: #ff8686; }
