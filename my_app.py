@@ -12,12 +12,13 @@ from python_scripts import ph
 
 app = Flask(__name__)
 
+# Render page
 @app.route("/", methods=['GET',"POST"])
 def home():
     
     return render_template('index.html')
 
-
+# Analyze and Sanitize
 @app.route("/analyze", methods=["POST"])
 def analyze():
 
@@ -44,7 +45,11 @@ def analyze():
     )
 
     
-
+# Compute Persisyent Homology
+# Returns Persistence Diagram
+@app.route("/compute", methods=["POST"])
+def compute():
+    return None
 
 
     
