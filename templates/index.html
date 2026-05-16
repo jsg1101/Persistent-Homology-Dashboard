@@ -6,6 +6,10 @@
   <!-- Page title shown in browser tab -->
   <title>PH Dashboard</title>
 
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/tetra.svg') }}">
+
+
   <!-- Main stylesheet -->
   <!-- <link rel="stylesheet" href="styles.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
@@ -30,6 +34,10 @@
     <li class="nav-item" data-page="analytics">Analytics</li>
     
   </ul>
+
+  <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
+   width="75" height="75">
+
 </div>
 
 <!-- =========================================================
@@ -40,6 +48,8 @@
   <!-- Header -->
   <div class="header">
     <h1 id="pageTitle">Data</h1>
+    <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
+    width="75" height="75">
   </div>
 
   <div class="content">
