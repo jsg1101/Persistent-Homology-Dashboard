@@ -238,8 +238,12 @@ function analyze(data) {
 function updateUI(file, r) {
   fileSummary.classList.remove("hidden");
 
-  fileName.textContent = "NAME: " + file.name;
-  fileSize.textContent = "SIZE: " + (file.size / 1024).toFixed(1) + " KB";
+  // fileName.textContent = "NAME: " + file.name;
+  // fileSize.textContent = "SIZE: " + (file.size / 1024).toFixed(1) + " KB";
+
+  fileName.textContent =  file.name;
+  fileSize.textContent =   (file.size / 1024).toFixed(1) + " KB";
+
 
   rowCount.textContent = r.flagged.length - 1;
   colCount.textContent = r.flagged[0]?.length || 0;

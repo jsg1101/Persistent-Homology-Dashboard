@@ -251,6 +251,16 @@ html, body {
   transition: max-height 0.4s ease;
 }
 
+#togglePreviewBtn {
+  text-align: center;        /* Center text */
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px; 
+  border-radius: 8px;        /* Rounded corners */
+  cursor: pointer;           /* Hand cursor on hover */
+  box-shadow: 3px 3px 5px black;
+}
+
 .preview-expanded {
   max-height: 650px;
 }
@@ -258,7 +268,10 @@ html, body {
 /* Controls row */
 .preview-controls {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  /* justify-content: space-between; */
+  justify-content: center;
+  align-items: center; /* Vertically centers the child */
   margin-bottom: 10px;
 }
 
