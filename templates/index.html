@@ -8,7 +8,7 @@
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/tetra.svg') }}">
-
+  <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='images/terta_gif.gif') }}"> -->
 
   <!-- Main stylesheet -->
   <!-- <link rel="stylesheet" href="styles.css"> -->
@@ -24,19 +24,29 @@
   SIDEBAR NAVIGATION (fixed left panel)
 ========================================================= -->
 <div class="sidebar">
+  <!-- <img src="{{ url_for('static', filename='favicon/tetra.svg') }}" alt="My Flask Animation"
+   width="75" height="75"> -->
   <h2>Homology Dashboard</h2>
 
   <ul class="nav">
+
+    <li class="nav-item" data-page="instructions">
+      Instructions</li>
+
     <li class="nav-item active" data-page="upload">
-      Data
+      Upload Data
     </li>
     
-    <li class="nav-item" data-page="analytics">Analytics</li>
+    <li class="nav-item" data-page="diagrams">Persistence Diagrams</li>
+
+    <li class="nav-item" data-page="bar-codes">Bar Codes</li>
+
+    <li class="nav-item" data-page="example-data">Example Data</li>
     
   </ul>
 
-  <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
-   width="75" height="75">
+  <!-- <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
+   width="75" height="75"> -->
 
 </div>
 
@@ -47,19 +57,39 @@
 
   <!-- Header -->
   <div class="header">
-    <h1 id="pageTitle">Data</h1>
-    <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
-    width="75" height="75">
+    <h1 id="pageTitle">Upload Data</h1>
+    <!-- <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
+    width="75" height="75"> -->
   </div>
 
   <div class="content">
+
+    <div class="page" id="instructions-page">
+      <!-- =====================================================
+        
+      ====================================================== -->
+      <div class="card hidden">
+        <h3>CSV / Excel</h3>
+
+        <!-- Error message -->
+        <p id="errorMsg" class="error">error</p>
+
+        <!-- Loading spinner while parsing -->
+        
+      </div>
+
+    </div>
+
+      
+
+      
 
     <div class="page active-page" id="upload-page">
         <!-- =====================================================
           FILE UPLOAD SECTION
         ====================================================== -->
         <div class="card">
-          <h3>Upload CSV / Excel</h3>
+          <h3>CSV / Excel</h3>
 
           <!-- Drag & Drop Zone -->
           <div id="dropZone" class="drop-zone">
@@ -117,6 +147,7 @@
             </div>
 
           </div>
+          
 
           <!-- Preview controls -->
           <div class="preview-controls">
@@ -159,8 +190,8 @@
     </div>
 
 
-    <div class="page" id="analytics-page">
-      <div class="card">
+    <div class="page" id="diagrams-page">
+      <div class="card hidden">
         <h2>Analytics</h2>
         <p>Charts and statistics go here.</p>
         <button id="sendBtn">Run Analytics</button>
@@ -216,7 +247,7 @@
 
 
 
-  </div>
+    </div>
 
 
 
