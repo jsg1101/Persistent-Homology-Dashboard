@@ -42,7 +42,7 @@ const table = document.getElementById("dataTable");
 const missingEl = document.getElementById("missingCount");
 const invalidEl = document.getElementById("invalidCount");
 const totalEl = document.getElementById("totalIssues");
-
+const diagramCards = document.querySelectorAll("#diagrams-page .card");
 // Navigation
 const navItems = document.querySelectorAll(".nav-item");
 const pages = document.querySelectorAll(".page");
@@ -144,6 +144,9 @@ toggleBtn.onclick = () => {
 // =========================================================
 function handleFile(file) {
 
+   // Store original file for backend upload
+   window.__uploadedFile = file;
+
   // Reset preview rows
   previewInput.value = 10;
 
@@ -175,6 +178,11 @@ function handleFile(file) {
       updateUI(file, result);
       renderPreview(result.flagged);
       renderTable(result.flagged);
+
+      // Reveal diagrams page content
+        diagramCards.forEach(card => {
+              card.classList.remove("hidden");
+            });
 
       spinner.classList.add("hidden");
 
@@ -317,35 +325,38 @@ function renderTable(data) {
 
 
 //////////////////////////////////////////
-// Send data to backend
+// Send ORIGINAL file to backend
 ///////////////////////////////////////
 document.getElementById("sendBtn").addEventListener("click", async () => {
-  console.log("sending..." );
-  const data = window.__lastData;
-  // console.log("contents: " + data);
 
-  // console.log("JSON contents: " + JSON.stringify(data));
+  console.log("sending file to backend...");
 
+  const file = window.__uploadedFile;
 
+  if (!file) {
+    console.error("No file uploaded");
+    return;
+  }
 
-  // Clean it RIGHT before sending
-  const cleanData = data.map(row =>
-    Array.isArray(row)
-      ? row.map(Number)
-      : Object.values(row).map(Number)
-  );
+  const formData = new FormData();
 
-  console.log("contents: " + cleanData)
+  formData.append("file", file);
 
-  const response = await fetch("/analyze", {
-    method: "POST",
-    headers: {
-      "Content-Type": "text/csv"
-    },
-    body: cleanData
-  });
+  try {
 
-  const result = await response.json();
+    const response = await fetch("/analyze", {
+      method: "POST",
+      body: formData
+    });
 
-  // console.log(result);
+    const result = await response.json();
+
+    console.log("backend response:", result);
+
+  } catch (err) {
+
+    console.error("Upload failed:", err);
+
+  }
+
 });

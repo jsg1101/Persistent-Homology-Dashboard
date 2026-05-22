@@ -32,6 +32,10 @@ def ph_diagram (data):
     # plot_diagrams(dgms, show=True)
 
 
+    # 3. Plot the data as a barcode instead of a diagram
+    # persim.plot_diagrams(diagrams, barcode=True)
+
+
     buf = io.BytesIO()
 
     fig.savefig(buf, format="png")
