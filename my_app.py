@@ -1,10 +1,11 @@
 
 
+from flask import Flask, Response, render_template, request, jsonify
 from flask import Flask, Response, render_template,request
-from flask import Flask, request, jsonify
-import pandas as pd
 
+import pandas as pd
 import numpy as np
+
 import io
 import csv
 import magic
@@ -86,6 +87,11 @@ def upload():
         validate_csv_upload(file)
 
         raw = file.stream.read()
+
+        if not raw:
+            raise UploadValidationError(
+            "Empty file"
+                )
 
         text = raw.decode("utf-8")
 
