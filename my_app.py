@@ -1,21 +1,16 @@
 
 
 from flask import Flask, Response, render_template, request, jsonify
-
-# import pandas as pd
-# import numpy as np
-
-# import io
-# import csv
-# import magic
+from werkzeug.exceptions import RequestEntityTooLarge
 
 
-# Python Scripts Imports
+
+# Local Python Imports
 from python_scripts import ph
 from services.upload_service import process_csv
 from exceptions import UploadValidationError
 
-from werkzeug.exceptions import RequestEntityTooLarge
+
 
 
 app = Flask(__name__)
@@ -39,84 +34,23 @@ def home():
 def upload():
 
     print("Uploading...")
-    
 
     if "file" not in request.files:
         raise UploadValidationError(
                 "No file uploaded"
         )
 
-
     file = request.files["file"]
 
-    # validate_csv_upload(file)
+    # process file
     rows = process_csv(file)
-
-        # raw = file.stream.read()
-
-        # if not raw:
-        #     raise UploadValidationError(
-        #     "Empty file"
-        #         )
-
-        # text = raw.decode("utf-8")
-
-        # reader = csv.reader(io.StringIO(text))
-
-        # rows = []
-
-        # for row_num, row in enumerate(reader):
-
-        #     if row_num > 10000:
-        #         raise UploadValidationError(
-        #             "Too many rows"
-        #         )
-
-        #     if len(row) > 100:
-        #         raise UploadValidationError(
-        #             "Too many columns"
-        #         )
-
-        #     clean_row = []
-
-        #     for cell in row:
-
-        #         if len(cell) > 1000:
-        #             raise UploadValidationError(
-        #                 "Cell too large"
-        #             )
-
-        #         if dangerous_cell(cell):
-        #             raise UploadValidationError(
-        #                 "Formula cells are not allowed"
-        #             )
-
-        #         clean_row.append(cell)
-
-        #     rows.append(clean_row)
 
     return jsonify({
         "success": True,
         "rows": len(rows)
     })
 
-    # except UploadValidationError as e:
-
-    #     return jsonify({
-    #         "success": False,
-    #         "error": str(e)
-    #     }), 400
-
-    # except Exception:
-
-    #     # Log actual exception internally
-    #     app.logger.exception("Upload failed")
-
-    #     # Generic message to user
-    #     return jsonify({
-    #         "success": False,
-    #         "error": "Upload processing failed"
-    #     }), 500
+    
 
 
 
