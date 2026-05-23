@@ -1,69 +1,34 @@
 
 
 from flask import Flask, Response, render_template, request, jsonify
-from flask import Flask, Response, render_template,request
 
-import pandas as pd
-import numpy as np
+# import pandas as pd
+# import numpy as np
 
-import io
-import csv
-import magic
+# import io
+# import csv
+# import magic
 
 
 # Python Scripts Imports
 from python_scripts import ph
+from services.upload_service import process_csv
+from exceptions import UploadValidationError
+
+from werkzeug.exceptions import RequestEntityTooLarge
+
 
 app = Flask(__name__)
 
-class UploadValidationError(Exception):
-    pass
+app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
+
+
 
 # Render page
 @app.route("/", methods=['GET',"POST"])
 def home():
     
     return render_template('index.html')
-
-
-# Upload sanitization
-app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
-
-MAX_ROWS = 10000
-MAX_COLS = 100
-MAX_CELL_LENGTH = 1000
-
-ALLOWED_MIMES = {
-    "text/csv",
-    "text/plain",
-    "application/csv",
-    "application/vnd.ms-excel",
-}
-
-def validate_csv_upload(file):
-
-    # Check extension first (cheap check)
-    if not file.filename.lower().endswith(".csv"):
-        raise UploadValidationError(
-            "Only CSV files are allowed"
-        )
-
-    # Check actual MIME signature
-    header = file.stream.read(2048)
-    file.stream.seek(0)
-
-    mime = magic.from_buffer(header, mime=True)
-
-    if mime not in ALLOWED_MIMES:
-         raise UploadValidationError(
-            "Invalid CSV file"
-        )
-
-def dangerous_cell(value):
-    return (
-        isinstance(value, str)
-        and value.startswith(("=", "+", "-", "@"))
-    )
 
 
 
@@ -74,83 +39,84 @@ def dangerous_cell(value):
 def upload():
 
     print("Uploading...")
-    try:
+    
 
-        if "file" not in request.files:
-            raise UploadValidationError(
+    if "file" not in request.files:
+        raise UploadValidationError(
                 "No file uploaded"
-            )
+        )
 
 
-        file = request.files["file"]
+    file = request.files["file"]
 
-        validate_csv_upload(file)
+    # validate_csv_upload(file)
+    rows = process_csv(file)
 
-        raw = file.stream.read()
+        # raw = file.stream.read()
 
-        if not raw:
-            raise UploadValidationError(
-            "Empty file"
-                )
+        # if not raw:
+        #     raise UploadValidationError(
+        #     "Empty file"
+        #         )
 
-        text = raw.decode("utf-8")
+        # text = raw.decode("utf-8")
 
-        reader = csv.reader(io.StringIO(text))
+        # reader = csv.reader(io.StringIO(text))
 
-        rows = []
+        # rows = []
 
-        for row_num, row in enumerate(reader):
+        # for row_num, row in enumerate(reader):
 
-            if row_num > 10000:
-                raise UploadValidationError(
-                    "Too many rows"
-                )
+        #     if row_num > 10000:
+        #         raise UploadValidationError(
+        #             "Too many rows"
+        #         )
 
-            if len(row) > 100:
-                raise UploadValidationError(
-                    "Too many columns"
-                )
+        #     if len(row) > 100:
+        #         raise UploadValidationError(
+        #             "Too many columns"
+        #         )
 
-            clean_row = []
+        #     clean_row = []
 
-            for cell in row:
+        #     for cell in row:
 
-                if len(cell) > 1000:
-                    raise UploadValidationError(
-                        "Cell too large"
-                    )
+        #         if len(cell) > 1000:
+        #             raise UploadValidationError(
+        #                 "Cell too large"
+        #             )
 
-                if dangerous_cell(cell):
-                    raise UploadValidationError(
-                        "Formula cells are not allowed"
-                    )
+        #         if dangerous_cell(cell):
+        #             raise UploadValidationError(
+        #                 "Formula cells are not allowed"
+        #             )
 
-                clean_row.append(cell)
+        #         clean_row.append(cell)
 
-            rows.append(clean_row)
+        #     rows.append(clean_row)
 
-        return jsonify({
-            "success": True,
-            "rows": len(rows)
-        })
+    return jsonify({
+        "success": True,
+        "rows": len(rows)
+    })
 
-    except UploadValidationError as e:
+    # except UploadValidationError as e:
 
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 400
+    #     return jsonify({
+    #         "success": False,
+    #         "error": str(e)
+    #     }), 400
 
-    except Exception:
+    # except Exception:
 
-        # Log actual exception internally
-        app.logger.exception("Upload failed")
+    #     # Log actual exception internally
+    #     app.logger.exception("Upload failed")
 
-        # Generic message to user
-        return jsonify({
-            "success": False,
-            "error": "Upload processing failed"
-        }), 500
+    #     # Generic message to user
+    #     return jsonify({
+    #         "success": False,
+    #         "error": "Upload processing failed"
+    #     }), 500
 
 
 
@@ -182,6 +148,36 @@ def compute():
     return None
 
 
+
+##########################################
+#  Error Handlers
+##########################################
+@app.errorhandler(UploadValidationError)
+def handle_upload_validation_error(e):
+
+    return jsonify({
+        "success": False,
+        "error": str(e)
+    }), 400
+
+
+@app.errorhandler(RequestEntityTooLarge)
+def handle_large_file(e):
+
+    return jsonify({
+        "success": False,
+        "error": "File exceeds 5MB limit"
+    }), 413
+
+@app.errorhandler(Exception)
+def handle_general_exception(e):
+
+    app.logger.exception("Unhandled exception")
+
+    return jsonify({
+        "success": False,
+        "error": "Internal server error"
+    }), 500
     
 
 # Initiating the application
