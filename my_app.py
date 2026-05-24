@@ -19,7 +19,7 @@ app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 
 
 
-# Render page
+# Home page route
 @app.route("/", methods=['GET',"POST"])
 def home():
     
@@ -43,11 +43,11 @@ def upload():
     file = request.files["file"]
 
     # process file
-    rows = process_csv(file)
+    result = process_csv(file)
 
     return jsonify({
-        "success": True,
-        "rows": len(rows)
+    "success": True,
+    **result
     })
 
     

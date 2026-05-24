@@ -153,92 +153,47 @@ function handleFile(file) {
   spinner.classList.remove("hidden");
 
   const reader = new FileReader();
+  // #######
+  const formData = new FormData();
+formData.append("file", file);
 
-  reader.onload = e => {
-    try {
-      const data = new Uint8Array(e.target.result);
+fetch("/upload", {
+  method: "POST",
+  body: formData
+})
+.then(async response => {
 
-      // Parse Excel/CSV
-      const wb = XLSX.read(data, { type: "array", cellFormula: false });
-      const sheet = wb.Sheets[wb.SheetNames[0]];
+  const result = await response.json();
+  console.log(result);
 
-      let json = XLSX.utils.sheet_to_json(sheet, {
-        header: 1,
-        defval: "" // preserve empty cells
-      });
+  if (!response.ok) {
+    throw new Error(result.error || "Upload failed");
+  }
 
-      // Data pipeline
-      json = sanitize(json);
-      const result = analyze(json);
+  window.__lastData = result.data;
 
-      // Store for dynamic preview updates
-      window.__lastData = result.flagged;
+  updateUI(file, result);
 
-      // UI updates
-      updateUI(file, result);
-      renderPreview(result.flagged);
-      renderTable(result.flagged);
+  renderPreview(result.data);
 
-      // Reveal diagrams page content
-        diagramCards.forEach(card => {
-              card.classList.remove("hidden");
-            });
+  renderTable(result.data);
 
-      spinner.classList.add("hidden");
+  diagramCards.forEach(card => {
+    card.classList.remove("hidden");
+  });
 
-    } catch {
-      errorMsg.textContent = "Error reading file.";
-      spinner.classList.add("hidden");
-    }
-  };
+  spinner.classList.add("hidden");
 
-  reader.readAsArrayBuffer(file);
+})
+.catch(err => {
+
+  errorMsg.textContent = err.message;
+
+  spinner.classList.add("hidden");
+
+});
 }
 
-// =========================================================
-// SANITIZATION
-// Prevents formula injection + HTML injection
-// =========================================================
-function sanitize(data) {
-  return data.map(r =>
-    r.map(c => {
-      if (typeof c === "string") {
-        if (/^[=+\-@]/.test(c)) return "'" + c;
-        return c.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      }
-      return c;
-    })
-  );
-}
-
-// =========================================================
-// DATA ANALYSIS
-// Classifies cells as:
-// - missing
-// - invalid (non-numeric)
-// - normal
-// =========================================================
-function analyze(data) {
-  let missing = 0, invalid = 0;
-
-  const flagged = data.map(row =>
-    row.map(cell => {
-      if (cell === "" || cell == null) {
-        missing++;
-        return { value: "", type: "missing" };
-      }
-
-      if (isNaN(parseFloat(cell))) {
-        invalid++;
-        return { value: cell, type: "invalid" };
-      }
-
-      return { value: cell, type: "normal" };
-    })
-  );
-
-  return { flagged, missing, invalid, total: missing + invalid };
-}
 
 // =========================================================
 // UI UPDATE (summary panel)
@@ -258,7 +213,7 @@ function updateUI(file, r) {
 
   missingEl.textContent = r.missing;
   invalidEl.textContent = r.invalid;
-  totalEl.textContent = r.total;
+  totalEl.textContent = r.total_issues;
 }
 
 // =========================================================
