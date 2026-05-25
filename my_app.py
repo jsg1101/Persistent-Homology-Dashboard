@@ -23,7 +23,7 @@ app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 @app.route("/", methods=['GET',"POST"])
 def home():
     
-    return render_template('index.html')
+    return render_template('dashboard.html')
 
 
 

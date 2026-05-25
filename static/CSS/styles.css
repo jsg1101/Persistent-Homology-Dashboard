@@ -168,34 +168,56 @@ html, body {
 /* =========================================================
   FILE SUMMARY
 ========================================================= */
+.summary-top {
+  display: grid;
+
+  /* responsive columns */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* grid-template-columns: 1.2fr 1fr 1fr; */
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.summary-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+   /* prevents overflow */
+   min-width: 0;
+}
+
+.summary-col span {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.title-col {
+  justify-content: center;
+}
+
 .summary-title {
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.summary-grid {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap; /* makes it responsive */
-  align-items: flex-start;
-  font-size: 14px;
-}
-
-.summary-column {
-  display: flex;
-  flex-direction: column; /* stack items vertically */
-  gap: 6px;
-  min-width: 140px;
+  margin: 0;
 }
 
 /* Optional: better mobile layout */
-@media (max-width: 480px) {
+
+
+@media (max-width: 800px) {
+
+  .summary-top {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+}
+/* @media (max-width: 480px) {
   .summary-grid {
     flex-direction: column;
     gap: 12px;
   }
-}
+} */
 
 /* =========================================================
   DATA QUALITY (ISSUE BOXES)

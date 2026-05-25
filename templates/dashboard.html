@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Page title shown in browser tab -->
+  <title>PH Dashboard</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/tetra.svg') }}">
+  <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='images/terta_gif.gif') }}"> -->
+
+  <!-- Main stylesheet -->
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+
+  <!-- SheetJS: Parses CSV / Excel files into usable JS data -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+
+<!-- =========================================================
+  SIDEBAR NAVIGATION (fixed left panel)
+========================================================= -->
+<div class="sidebar">
+  <!-- <img src="{{ url_for('static', filename='favicon/tetra.svg') }}" alt="My Flask Animation"
+   width="75" height="75"> -->
+  <h2>Homology Dashboard</h2>
+
+  <ul class="nav">
+
+    <li class="nav-item" data-page="instructions">
+      Instructions</li>
+
+    <li class="nav-item active" data-page="upload">
+      Upload Data
+    </li>
+    
+    <li class="nav-item" data-page="diagrams">Persistence Diagrams</li>
+
+    <li class="nav-item" data-page="barcodes">Barcodes</li>
+
+    <li class="nav-item" data-page="examples">Examples</li>
+    
+  </ul>
+
+  <!-- <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
+   width="75" height="75"> -->
+
+</div>
+
+<!-- =========================================================
+  MAIN CONTENT AREA
+========================================================= -->
+<div class="main">
+
+  <!-- Header -->
+  <div class="header">
+    <h1 id="pageTitle">Upload Data</h1>
+    <!-- <img src="{{ url_for('static', filename='images/terta_gif.gif') }}" alt="My Flask Animation"
+    width="75" height="75"> -->
+  </div>
+
+  <div class="content">
+
+    {% include 'sections/instructions.html' %}
+    {% include 'sections/upload.html' %}
+    {% include 'sections/diagrams.html' %}
+    {% include 'sections/barcodes.html' %}
+    {% include 'sections/examples.html' %}
+  
+  </div>
+
+    
+
+
+</div>
+
+<!-- Main application logic -->
+
+
+<script src="{{ url_for('static', filename='JS/script.js') }}"></script>
+<script src="{{ url_for('static', filename='JS/navigation.js') }}"></script>
+
+<script src="{{ url_for('static', filename='JS/render.js') }}"></script>
+
+<script src="{{ url_for('static', filename='JS/preview.js') }}"></script>
+
+<script src="{{ url_for('static', filename='JS/upload.js') }}"></script>
+
+
+</body>
+</html>

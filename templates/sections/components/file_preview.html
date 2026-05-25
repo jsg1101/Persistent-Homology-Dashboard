@@ -1,0 +1,42 @@
+
+
+
+   <!-- FILE PREVIEW -->
+   <div id="filePreview" class="card hidden">
+
+    <h2 class="summary-title">Data Preview</h2>
+
+    <!-- Preview controls -->
+    <div class="preview-controls">
+
+        <button id="togglePreviewBtn">
+        Show Preview ▼
+        </button>
+
+        <label>
+            Rows:
+            <input
+                type="number"
+                id="previewCount"
+                value="10"
+                min="1"
+                max="100"
+                    >
+        </label>
+
+    </div>
+
+    <!-- Expandable preview panel -->
+    <div id="previewSection">
+
+        <div class="preview-inner">
+
+            <div class="table-container">
+                <table id="previewTable"></table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

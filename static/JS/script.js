@@ -48,233 +48,17 @@ const navItems = document.querySelectorAll(".nav-item");
 const pages = document.querySelectorAll(".page");
 const pageTitle = document.getElementById("pageTitle");
 
-// =========================================================
-// Navigation Logic
-// Handles active status and pages
-// =========================================================
-
-
-navItems.forEach(item => {
-
-  item.addEventListener("click", () => {
-
-    // Remove active state from all nav items
-    navItems.forEach(nav => nav.classList.remove("active"));
-
-    // Add active to clicked item
-    item.classList.add("active");
-
-    // Hide all pages
-    pages.forEach(page => {
-      page.classList.remove("active-page");
-    });
-
-    // Get target page
-    const pageName = item.dataset.page;
-
-    // Show matching page
-    const activePage = document.getElementById(`${pageName}-page`);
-
-    if (activePage) {
-      activePage.classList.add("active-page");
-    }
-
-    // Update header title
-    pageTitle.textContent = item.textContent;
-  });
-
-});
 
 
 
-// =========================================================
-// FILE INPUT EVENTS
-// Handles drag/drop and file selection
-// =========================================================
-dropZone.onclick = () => fileInput.click();
-
-fileInput.onchange = e => handleFile(e.target.files[0]);
-
-dropZone.addEventListener("dragover", () =>
-  dropZone.classList.add("dragover")
-);
-
-dropZone.addEventListener("dragleave", () =>
-  dropZone.classList.remove("dragover")
-);
-
-dropZone.addEventListener("drop", e => {
-  dropZone.classList.remove("dragover");
-  handleFile(e.dataTransfer.files[0]);
-});
-
-// =========================================================
-// PREVIEW CONTROLS
-// Updates preview when row count changes
-// =========================================================
-previewInput.addEventListener("input", () => {
-  if (window.__lastData) {
-    renderPreview(window.__lastData);
-    updatePreviewHeight();
-  }
-});
-
-// =========================================================
-// PREVIEW TOGGLE (expand / collapse)
-// =========================================================
-let open = false;
-
-toggleBtn.onclick = () => {
-  open = !open;
-
-  if (open) {
-    previewSection.classList.add("preview-expanded");
-    previewSection.style.maxHeight = previewSection.scrollHeight + "px";
-    toggleBtn.textContent = "Hide Preview ▲";
-  } else {
-    previewSection.classList.remove("preview-expanded");
-    previewSection.style.maxHeight = "0px";
-    toggleBtn.textContent = "Show Preview ▼";
-  }
-};
-
-// =========================================================
-// FILE HANDLING PIPELINE
-// Reads file → parses → sanitizes → analyzes → renders UI
-// =========================================================
-function handleFile(file) {
-
-   // Store original file for backend upload
-   window.__uploadedFile = file;
-
-  // Reset preview rows
-  previewInput.value = 10;
-
-  spinner.classList.remove("hidden");
-
-  const reader = new FileReader();
-  // #######
-  const formData = new FormData();
-formData.append("file", file);
-
-fetch("/upload", {
-  method: "POST",
-  body: formData
-})
-.then(async response => {
-
-  const result = await response.json();
-  console.log(result);
-
-  if (!response.ok) {
-    throw new Error(result.error || "Upload failed");
-  }
-
-  window.__lastData = result.data;
-
-  updateUI(file, result);
-
-  renderPreview(result.data);
-
-  renderTable(result.data);
-
-  diagramCards.forEach(card => {
-    card.classList.remove("hidden");
-  });
-
-  spinner.classList.add("hidden");
-
-})
-.catch(err => {
-
-  errorMsg.textContent = err.message;
-
-  spinner.classList.add("hidden");
-
-});
-}
 
 
-// =========================================================
-// UI UPDATE (summary panel)
-// =========================================================
-function updateUI(file, r) {
-  fileSummary.classList.remove("hidden");
-
-  // fileName.textContent = "NAME: " + file.name;
-  // fileSize.textContent = "SIZE: " + (file.size / 1024).toFixed(1) + " KB";
-
-  fileName.textContent =  file.name;
-  fileSize.textContent =   (file.size / 1024).toFixed(1) + " KB";
 
 
-  rowCount.textContent = r.flagged.length - 1;
-  colCount.textContent = r.flagged[0]?.length || 0;
 
-  missingEl.textContent = r.missing;
-  invalidEl.textContent = r.invalid;
-  totalEl.textContent = r.total_issues;
-}
 
-// =========================================================
-// PREVIEW HEIGHT MANAGEMENT (smooth animation)
-// =========================================================
-function updatePreviewHeight() {
-  if (previewSection.classList.contains("preview-expanded")) {
-    previewSection.style.maxHeight = previewSection.scrollHeight + "px";
-  }
-}
 
-// =========================================================
-// PREVIEW RENDERING (limited rows)
-// =========================================================
-function renderPreview(data) {
-  previewTable.innerHTML = "";
 
-  const count = Number(previewInput.value);
-  const safeCount = Number.isNaN(count) ? 10 : count;
-
-  data.slice(0, safeCount).forEach((row, i) => {
-    const tr = document.createElement("tr");
-
-    row.forEach(c => {
-      const el = document.createElement(i === 0 ? "th" : "td");
-      el.textContent = c.value;
-
-      if (c.type === "missing") el.classList.add("cell-missing");
-      if (c.type === "invalid") el.classList.add("cell-invalid");
-
-      tr.appendChild(el);
-    });
-
-    previewTable.appendChild(tr);
-  });
-
-  updatePreviewHeight();
-}
-
-// =========================================================
-// FULL TABLE RENDERING (all rows)
-// =========================================================
-function renderTable(data) {
-  table.innerHTML = "";
-
-  data.forEach((row, i) => {
-    const tr = document.createElement("tr");
-
-    row.forEach(c => {
-      const el = document.createElement(i === 0 ? "th" : "td");
-      el.textContent = c.value;
-
-      if (c.type === "missing") el.classList.add("cell-missing");
-      if (c.type === "invalid") el.classList.add("cell-invalid");
-
-      tr.appendChild(el);
-    });
-
-    table.appendChild(tr);
-  });
-}
 
 
 
@@ -282,36 +66,36 @@ function renderTable(data) {
 //////////////////////////////////////////
 // Send ORIGINAL file to backend
 ///////////////////////////////////////
-document.getElementById("sendBtn").addEventListener("click", async () => {
+// document.getElementById("sendBtn").addEventListener("click", async () => {
 
-  console.log("sending file to backend...");
+//   console.log("sending file to backend...");
 
-  const file = window.__uploadedFile;
+//   const file = window.__uploadedFile;
 
-  if (!file) {
-    console.error("No file uploaded");
-    return;
-  }
+//   if (!file) {
+//     console.error("No file uploaded");
+//     return;
+//   }
 
-  const formData = new FormData();
+//   const formData = new FormData();
 
-  formData.append("file", file);
+//   formData.append("file", file);
 
-  try {
+//   try {
 
-    const response = await fetch("/analyze", {
-      method: "POST",
-      body: formData
-    });
+//     const response = await fetch("/analyze", {
+//       method: "POST",
+//       body: formData
+//     });
 
-    const result = await response.json();
+//     const result = await response.json();
 
-    console.log("backend response:", result);
+//     console.log("backend response:", result);
 
-  } catch (err) {
+//   } catch (err) {
 
-    console.error("Upload failed:", err);
+//     console.error("Upload failed:", err);
 
-  }
+//   }
 
-});
+// });
