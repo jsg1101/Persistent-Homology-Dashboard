@@ -50,7 +50,7 @@ function handleFile(file) {
    console.log(result);
  
    if (!response.ok) {
-     throw new Error(result.error || "Upload failed");
+     throw new Error(result.error || "Upload failed JS");
    }
  
    window.__lastData = result.data;
