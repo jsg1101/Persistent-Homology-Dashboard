@@ -1,0 +1,149 @@
+/* * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Inter, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1f2937;
+    padding: 32px;
+  }
+
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  } */
+
+  .examples-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .plot-card {
+
+    background: aliceblue;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    /* max-width: 3000px; */
+
+    box-shadow: 3px 3px 5px black;
+    width: 80%;
+
+    
+    /* border-radius: 16px;
+    padding: 24px; */
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    align-items: stretch;
+
+    /* box-shadow:
+      0 2px 8px rgba(0,0,0,0.06),
+      0 8px 24px rgba(0,0,0,0.04); */
+  }
+
+  .plot-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    /* border-right: 5px solid #38bdf8; */
+    border-right: 5px solid #334155;
+    padding-right: 24px;
+  }
+
+  .plot-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .plot-description {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .download-btn_container{
+    display: flex;
+
+    justify-content: center;
+  }
+  .download-btn {
+    width: fit-content;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #334155;
+    color:aliceblue;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .download-btn:hover {
+    background: #38bdf8;
+    color: black;
+  }
+
+  .plot-area {
+    min-height: 420px;
+    /* max-width: 500px; */
+    background: #eef2ff;
+    border-radius: 12px;
+    /* border: 2px dashed #c7d2fe; */
+    border: 2px dashed #334155;
+
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    position:relative;
+    overflow: hidden; /* Keeps the iframe corners rounded inside the card */
+
+    color: #4f46e5;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .plot-area iframe {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    overflow: hidden;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .plot-card {
+      grid-template-columns: 1fr;
+    }
+
+    .plot-sidebar {
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+      padding-right: 0;
+      padding-bottom: 20px;
+    }
+
+    .plot-area {
+      min-height: 320px;
+    }
+  }

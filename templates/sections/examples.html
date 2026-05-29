@@ -1,7 +1,104 @@
 
 
-
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/example.css') }}">
 <div class="page" id="examples-page">
 
+    <div class = "examples-container">
+
+
+        <!-- Plot Card -->
+        <!-- <div class="plot-card"> -->
+        <div class="plot-card">
+            <div class="plot-sidebar">
+                <div>
+                    <h2 class="plot-title">S<sup>1</sup></h2>
+                    <p class="plot-description">
+                    Quarterly revenue projections with confidence intervals
+                    and historical comparisons.
+                    </p>
+                </div>
+    
+                <div class = "download-btn_container">
+                    <button class="download-btn">
+                        Download CSV
+                    </button>
+                </div>
+            </div>
+    
+            <div class="plot-area">
+            <!-- Plot goes here -->
+            <iframe src="{{ url_for('static', filename='plots/noisy_S1.html') }}" scrolling="no" loading="lazy">
+            </iframe>
+            </div>
+        </div>
+    
+        <!-- Plot Card -->
+        <div class="plot-card">
+            <div class="plot-sidebar">
+            <div>
+                <h2 class="plot-title">Noisey S<sup>1</sup></h2>
+                <p class="plot-description">
+                Monthly active users across all product segments.
+                </p>
+            </div>
+    
+            <div class = "download-btn_container">
+                <button class="download-btn">
+                    Download CSV
+                </button>
+            </div>
+            </div>
+    
+            <div class="plot-area">
+                <iframe src="{{ url_for('static', filename='plots/noisy_S1.html') }}" scrolling="no" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    
+        <!-- Plot Card -->
+        <div class="plot-card">
+            <div class="plot-sidebar">
+            <div>
+                <h2 class="plot-title">S<sup>2</sup></h2>
+                <p class="plot-description">
+                Latency, throughput, and infrastructure utilization.
+                </p>
+            </div>
+    
+            <div class = "download-btn_container">
+                <button class="download-btn">
+                    Download CSV
+                </button>
+            </div>
+            </div>
+    
+            <div class="plot-area">
+            Plot goes here
+            </div>
+        </div>
+        
+
+         <!-- Plot Card -->
+         <div class="plot-card">
+            <div class="plot-sidebar">
+            <div>
+                <h2 class="plot-title">S<sup>1</sup> x S<sup>1</sup></h2>
+                <p class="plot-description">
+                Latency, throughput, and infrastructure utilization.
+                </p>
+            </div>
+    
+            <div class = "download-btn_container">
+                <button class="download-btn">
+                    Download CSV
+                </button>
+            </div>
+            </div>
+    
+            <div class="plot-area">
+            Plot goes here
+            </div>
+        </div>
+    </div>
       
 </div>

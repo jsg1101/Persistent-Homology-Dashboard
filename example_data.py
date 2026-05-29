@@ -234,10 +234,12 @@ def plot_data(data):
     return fig
 
 # Call the function to get the figure object
-my_plot = plot_data(InfinityTube())
+# my_plot = plot_data(InfinityTube())
+# my_plot = plot_data(Torus())
+my_plot = plot_data(noisy_S1())
 
 # Display 
 my_plot.show()
 
 # Save to interactive HTML file
-# my_plot.write_html("my_circle_plot.html")
+my_plot.write_html("noisy_S1.html")
