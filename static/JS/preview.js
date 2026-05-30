@@ -56,9 +56,12 @@ function updatePreviewHeight() {
       const tr = document.createElement("tr");
   
       row.forEach(c => {
+
         const el = document.createElement("td");
+
         el.textContent = c.value;
-  
+        
+        // label cells
         if (c.type === "missing") el.classList.add("cell-missing");
         if (c.type === "invalid") el.classList.add("cell-invalid");
   
