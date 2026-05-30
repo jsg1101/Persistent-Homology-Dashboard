@@ -56,7 +56,7 @@ function updatePreviewHeight() {
       const tr = document.createElement("tr");
   
       row.forEach(c => {
-        const el = document.createElement(i === 0 ? "th" : "td");
+        const el = document.createElement("td");
         el.textContent = c.value;
   
         if (c.type === "missing") el.classList.add("cell-missing");

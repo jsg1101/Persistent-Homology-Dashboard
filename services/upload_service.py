@@ -2,6 +2,7 @@ import csv
 import io
 import magic
 import html
+import re
 
 from exceptions import UploadValidationError
 
@@ -137,7 +138,20 @@ def dangerous_cell(value):
 
     trimmed = value.lstrip()
 
-    return trimmed.startswith(("=", "+", "-", "@"))
+    # Always dangerous
+    if trimmed.startswith(("=", "+", "@")):
+        return True
+
+    # If it starts with -, allow only valid negative numbers
+    if trimmed.startswith("-"):
+        return not bool(
+            re.fullmatch(
+                r"-\d+(\.\d+)?([eE][+-]?\d+)?",
+                trimmed
+            )
+        )
+
+    return False
 
 
 def validate_csv_upload(file):
@@ -147,16 +161,16 @@ def validate_csv_upload(file):
             "Only CSV files are allowed"
         )
 
-    header = file.stream.read(2048)
-    file.stream.seek(0)
+    # header = file.stream.read(2048)
+    # file.stream.seek(0)
 
-    mime = magic.from_buffer(header, mime=True)
-    print(mime)
+    # mime = magic.from_buffer(header, mime=True)
+    # print(mime)
 
-    if mime not in ALLOWED_MIMES:
-        raise UploadValidationError(
-            "Invalid CSV file"
-        )
+    # if mime not in ALLOWED_MIMES:
+    #     raise UploadValidationError(
+    #         "Invalid CSV file"
+    #     )
     
 def sanitize_html(value):
 

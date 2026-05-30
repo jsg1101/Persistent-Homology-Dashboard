@@ -35,7 +35,7 @@
     /* max-width: 3000px; */
 
     box-shadow: 3px 3px 5px black;
-    width: 80%;
+    width: 90%;
 
     
     /* border-radius: 16px;
@@ -56,7 +56,7 @@
     justify-content: space-between;
     gap: 20px;
     /* border-right: 5px solid #38bdf8; */
-    border-right: 5px solid #334155;
+    /* border-right: 5px solid rgb(135, 186, 232); */
     padding-right: 24px;
   }
 
@@ -89,6 +89,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s ease;
+    box-shadow: 3px 3px 5px black;
   }
 
   .download-btn:hover {
@@ -99,10 +100,14 @@
   .plot-area {
     min-height: 420px;
     /* max-width: 500px; */
-    background: #eef2ff;
+    /* background: #eef2ff; */
+    background: aliceblue;
+    /* background: rgb(135, 186, 232); */
+    
     border-radius: 12px;
     /* border: 2px dashed #c7d2fe; */
-    border: 2px dashed #334155;
+    /* border: 2px solid #334155; */
+    border: 4px solid rgb(135, 186, 232);
 
     /* display: flex; */
     /* align-items: center; */
@@ -116,12 +121,15 @@
   }
 
   .plot-area iframe {
+    
 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
+
+    /* border: 2px solid rgb(135, 186, 232); */
 
     width: 100%;
     height: 100%;

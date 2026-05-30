@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 # 3D circle (ring) data set
 def S1() :
 
-    num_points = 225
+    num_points = 75
     theta = np.linspace(0, 2 * np.pi, num_points)
     radius = 2.0
 
@@ -15,7 +15,7 @@ def S1() :
     y = radius * np.sin(theta) 
     z = np.zeros(num_points) 
 
-    return (x,y,z)
+    return (x,y,z,theta)
 
 # 3D circle (ring) data set with noise
 def noisy_S1() :
@@ -186,7 +186,7 @@ def plot_data(data):
         # marker=dict(size=4, color=z, colorscale='Viridis', opacity=0.8)
         # marker=dict(size=4, color=data[0], colorscale='Jet', opacity=0.8)
         # marker=dict(size=4, color=data[2], colorscale='turbo', opacity=0.8)
-        marker=dict(size=4, color=data[2], colorscale='turbo', opacity=0.8)
+        marker=dict(size=4, color=data[3], colorscale='turbo', opacity=0.8)
     ))
 
 
@@ -233,13 +233,33 @@ def plot_data(data):
 
     return fig
 
+data = S1()
+print(type(data))
+
+
+arr = np.column_stack(data)
+print(len(arr))
+print(arr.shape)
+print(arr.size)
+
+np.savetxt(
+    "S1.csv",
+    arr,
+    delimiter=",",
+    fmt="%g"
+)
+
+
+
+
 # Call the function to get the figure object
 # my_plot = plot_data(InfinityTube())
 # my_plot = plot_data(Torus())
-my_plot = plot_data(noisy_S1())
+# my_plot = plot_data(noisy_S1())
+my_plot = plot_data(data)
 
 # Display 
 my_plot.show()
 
 # Save to interactive HTML file
-my_plot.write_html("noisy_S1.html")
+# my_plot.write_html("S1.html")
