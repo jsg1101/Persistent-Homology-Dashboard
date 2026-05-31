@@ -59,7 +59,7 @@ function handleFile(file) {
  
    renderPreview(result.data);
  
-   renderTable(result.data);
+  //  renderTable(result.data);
  
    diagramCards.forEach(card => {
      card.classList.remove("hidden");

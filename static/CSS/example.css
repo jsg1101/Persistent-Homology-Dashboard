@@ -80,21 +80,66 @@
   }
   .download-btn {
     width: fit-content;
+
     padding: 12px 18px;
+
     border: none;
     border-radius: 10px;
-    background: #334155;
+
+    /* background: #334155; */
+    /* background: linear-gradient(#475569, #334155); */
+    background:#6b7280;
     color:aliceblue;
+
     font-size: 0.95rem;
     font-weight: 600;
+
     cursor: pointer;
-    transition: background 0.2s ease;
+
+    
     box-shadow: 3px 3px 5px black;
+    /* transform: translateY(0); */
+
+    /* transition: background 0.2s ease; */
+
+    border-top: 3px solid rgba(255,255,255,0.2);
+
+
+    /* 3D effect */
+    /* box-shadow:
+        0 5px 0 #1e293b,
+        0 8px 12px rgba(0,0,0,0.3); */
+
+    transform: translateY(0);
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        background 0.2s ease,
+        color 0.2s ease;
   }
 
   .download-btn:hover {
     background: #38bdf8;
     color: black;
+
+     /* rise slightly */
+     transform: translateY(-2px);
+
+     /* box-shadow:
+         0 7px 0 #1e293b,
+         0 10px 16px rgba(0,0,0,0.3); */
+  }
+
+  .download-btn:active{
+     /* move down toward the base */
+     transform: translateY(2px);
+
+     /* box-shadow:
+         0 1px 0 #1e293b,
+         0 2px 4px rgba(0,0,0,0.3); */
+
+
   }
 
   .plot-area {

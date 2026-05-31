@@ -30,22 +30,22 @@ function updateUI(file, r) {
   // =========================================================
   // FULL TABLE RENDERING (all rows)
   // =========================================================
-  function renderTable(data) {
-    table.innerHTML = "";
+  // function renderTable(data) {
+  //   table.innerHTML = "";
   
-    data.forEach((row, i) => {
-      const tr = document.createElement("tr");
+  //   data.forEach((row, i) => {
+  //     const tr = document.createElement("tr");
   
-      row.forEach(c => {
-        const el = document.createElement(i === 0 ? "th" : "td");
-        el.textContent = c.value;
+  //     row.forEach(c => {
+  //       const el = document.createElement(i === 0 ? "th" : "td");
+  //       el.textContent = c.value;
   
-        if (c.type === "missing") el.classList.add("cell-missing");
-        if (c.type === "invalid") el.classList.add("cell-invalid");
+  //       if (c.type === "missing") el.classList.add("cell-missing");
+  //       if (c.type === "invalid") el.classList.add("cell-invalid");
   
-        tr.appendChild(el);
-      });
+  //       tr.appendChild(el);
+  //     });
   
-      table.appendChild(tr);
-    });
-  }
+  //     table.appendChild(tr);
+  //   });
+  // }
