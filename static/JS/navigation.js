@@ -28,6 +28,11 @@ navItems.forEach(item => {
       if (activePage) {
         activePage.classList.add("active-page");
       }
+
+      document.body.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
   
       // Update header title
       pageTitle.textContent = item.textContent;
