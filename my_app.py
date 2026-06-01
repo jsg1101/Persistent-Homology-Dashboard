@@ -1,8 +1,9 @@
 
 
 from flask import Flask, Response, render_template, request, jsonify
+from flask import abort, send_from_directory
 from werkzeug.exceptions import RequestEntityTooLarge
-
+import os
 
 
 # Local Python Imports
@@ -80,6 +81,26 @@ def analyze():
 @app.route("/compute", methods=["POST"])
 def compute():
     return None
+#######################################
+# Download example csv's route
+#######################################
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DOWNLOAD_DIR = os.path.join(BASE_DIR, "csv_files")
+ALLOWED_FILES = {"S1.csv", "S2.csv", "S3.csv"}
+
+@app.route("/download/<filename>")
+def download(filename):
+
+    if filename not in ALLOWED_FILES:
+        abort(404)
+
+    return send_from_directory(
+        DOWNLOAD_DIR,
+        filename,
+        as_attachment=True
+    )
+
+
 
 
 
