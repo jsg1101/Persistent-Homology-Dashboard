@@ -1,6 +1,6 @@
 
 
-
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/diagrams.css') }}">
 <div class="page" id="diagrams-page">
 
 
@@ -10,8 +10,14 @@
   <div class="card hidden">
     <h2>Analytics</h2>
     <p>Charts and statistics go here.</p>
-    <button id="sendBtn">Run Analytics</button>
-    <!-- <img src="/diagram"> -->
+
+    <div class = "diagramBtn_container">
+        <button class ="diagramBtn">
+          Compute Diagram
+        </button>
+    </div>
+    
+    
   </div>
 
     

@@ -73,9 +73,10 @@ def process_csv(file):
 
             # Prevent formula injection
             if dangerous_cell(cell):
-                raise UploadValidationError(
-                    "Formula cells are not allowed"
-                )
+                safe_cell = sanitize_html(cell)
+                # raise UploadValidationError(
+                #     "Formula cells are not allowed"
+                # )
 
             # Prevent HTML injection
             safe_cell = sanitize_html(cell)

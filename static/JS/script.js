@@ -23,6 +23,8 @@ const fileInput = document.getElementById("fileInput");
 const spinner = document.getElementById("spinner");
 const errorMsg = document.getElementById("errorMsg");
 
+// File Summary
+
 const fileSummary = document.getElementById("fileSummary");
 
 const fileName = document.getElementById("fileName");
@@ -30,6 +32,12 @@ const fileSize = document.getElementById("fileSize");
 
 const rowCount = document.getElementById("rowCount");
 const colCount = document.getElementById("colCount");
+
+const missingEl = document.getElementById("missingCount");
+const invalidEl = document.getElementById("invalidCount");
+const totalEl = document.getElementById("totalIssues");
+
+//File Preview
 
 const previewTable = document.getElementById("previewTable");
 const previewSection = document.getElementById("previewSection");
@@ -39,9 +47,7 @@ const previewInput = document.getElementById("previewCount");
 
 const table = document.getElementById("dataTable");
 
-const missingEl = document.getElementById("missingCount");
-const invalidEl = document.getElementById("invalidCount");
-const totalEl = document.getElementById("totalIssues");
+
 const diagramCards = document.querySelectorAll("#diagrams-page .card");
 // Navigation
 const navItems = document.querySelectorAll(".nav-item");
