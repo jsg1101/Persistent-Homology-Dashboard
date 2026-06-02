@@ -2,6 +2,8 @@ import numpy as np
 from ripser import ripser
 from persim import plot_diagrams
 
+import pandas as pd
+
 import matplotlib
 matplotlib.use("Agg") # insures non interactive display for server
 
@@ -15,14 +17,23 @@ def validate_data(data):
 
 # Compute PH and create diagrams
 def ph_diagram (data):
-    print(type(data))
 
-    data_array = np.array(data)
 
-    print(type(data_array))
+    # print(type(data))
+    # print(data)
+
+    df = pd.read_csv(data)
+
+    data_array = df.to_numpy()
+
+    # print(type(data_array))
+    # print("shape:" + str(data_array.shape))
+    # print(data_array)
+
 
     result = ripser(data_array)
     dgms = result['dgms']
+    print(dgms)
 
     fig, ax = plt.subplots(figsize=(5, 5))
     plot_diagrams(dgms, ax=ax)
@@ -36,14 +47,15 @@ def ph_diagram (data):
     # persim.plot_diagrams(diagrams, barcode=True)
 
 
-    buf = io.BytesIO()
+    buffer = io.BytesIO()
 
-    fig.savefig(buf, format="png")
+    fig.savefig(buffer, format="png")
+
     plt.close(fig)
 
-    buf.seek(0)
+    buffer.seek(0)
 
-    return buf
+    return buffer
     
 
 # # 1. Generate data (using a circle to ensure features exist)

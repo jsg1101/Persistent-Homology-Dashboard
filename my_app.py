@@ -1,7 +1,7 @@
 
 
 from flask import Flask, Response, render_template, request, jsonify
-from flask import abort, send_from_directory
+from flask import abort, send_from_directory,send_file
 from werkzeug.exceptions import RequestEntityTooLarge
 import os
 
@@ -10,6 +10,7 @@ import os
 from python_scripts import ph
 from services.upload_service import process_csv
 from exceptions import UploadValidationError
+
 
 
 
@@ -78,9 +79,23 @@ def analyze():
     
 # Compute Persisyent Homology
 # Returns Persistence Diagram
-@app.route("/compute", methods=["POST"])
-def compute():
-    return None
+@app.route("/diagrams", methods=["POST"])
+def diagrams():
+
+    print("diagrams")
+
+    file = request.files.get("file")
+
+    if not file:
+        return {"error": "No file supplied"}, 400
+
+    # Create plot
+    image_bytes = ph.ph_diagram(file)
+
+    return send_file(
+        image_bytes,
+        mimetype="image/png"
+    )
 #######################################
 # Download example csv's route
 #######################################
