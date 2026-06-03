@@ -71,3 +71,24 @@
 
 
   }
+
+
+#diagram-container{
+    display: flex;
+    /* Horizontally centers the child */
+    justify-content: center; 
+
+    /* Vertically centers the child */
+    align-items: center; 
+
+    /* Gives the parent height so vertical alignment is visible */
+    /* height: 100vh;            */
+}
+
+/* Add this right below it: */
+#diagram-container.hidden {
+    display: none;
+  }
+
+
+  

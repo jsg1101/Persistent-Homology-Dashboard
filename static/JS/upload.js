@@ -64,6 +64,10 @@ function handleFile(file) {
    diagramCards.forEach(card => {
      card.classList.remove("hidden");
    });
+
+   barCodeCards.forEach(card => {
+    card.classList.remove("hidden");
+  });
  
    spinner.classList.add("hidden");
  

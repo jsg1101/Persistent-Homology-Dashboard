@@ -233,11 +233,17 @@ def plot_data(data):
 
     return fig
 
+
+
+
+
+
+
 data = S1()
 print(type(data))
 
 
-arr = np.column_stack(data)
+arr = np.column_stack(data[:3])
 print(len(arr))
 print(arr.shape)
 print(arr.size)
@@ -256,10 +262,10 @@ np.savetxt(
 # my_plot = plot_data(InfinityTube())
 # my_plot = plot_data(Torus())
 # my_plot = plot_data(noisy_S1())
-my_plot = plot_data(data)
+# my_plot = plot_data(data)
 
 # Display 
-my_plot.show()
+# my_plot.show()
 
 # Save to interactive HTML file
 # my_plot.write_html("S1.html")

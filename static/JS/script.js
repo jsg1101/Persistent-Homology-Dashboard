@@ -49,6 +49,7 @@ const table = document.getElementById("dataTable");
 
 
 const diagramCards = document.querySelectorAll("#diagrams-page .card");
+const barCodeCards = document.querySelectorAll("#barcodes-page .card");
 // Navigation
 const navItems = document.querySelectorAll(".nav-item");
 const pages = document.querySelectorAll(".page");
@@ -69,39 +70,3 @@ const pageTitle = document.getElementById("pageTitle");
 
 
 
-//////////////////////////////////////////
-// Send ORIGINAL file to backend
-///////////////////////////////////////
-// document.getElementById("sendBtn").addEventListener("click", async () => {
-
-//   console.log("sending file to backend...");
-
-//   const file = window.__uploadedFile;
-
-//   if (!file) {
-//     console.error("No file uploaded");
-//     return;
-//   }
-
-//   const formData = new FormData();
-
-//   formData.append("file", file);
-
-//   try {
-
-//     const response = await fetch("/analyze", {
-//       method: "POST",
-//       body: formData
-//     });
-
-//     const result = await response.json();
-
-//     console.log("backend response:", result);
-
-//   } catch (err) {
-
-//     console.error("Upload failed:", err);
-
-//   }
-
-// });
