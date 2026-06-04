@@ -1,7 +1,7 @@
 
 
 
-
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/barcodes.css') }}">
 <div class="page" id="barcodes-page">
 
     {% include 'sections/components/file_summary.html' %}
@@ -9,8 +9,17 @@
     <div class="card hidden">
         <h2>Analytics</h2>
         <p>Charts and statistics go here.</p>
-        <button id="sendBtn">Run Analytics</button>
-        <!-- <img src="/diagram"> -->
-      </div>
+        <div class = "barcodeBtn_container">
+          <button id ="barcodeBtn">
+            Compute Barcode
+          </button>
+        </div>
+
+
+        <div id="barcode-container" class="card hidden">
+          <img id="barcode-image" />
+        </div>
+
+    </div>
 
 </div>

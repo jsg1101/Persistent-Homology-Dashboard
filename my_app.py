@@ -20,8 +20,9 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 
 
-
-# Home page route
+##################################
+## Dashboard Home page Route    ##
+##################################
 @app.route("/", methods=['GET',"POST"])
 def home():
     
@@ -30,8 +31,9 @@ def home():
 
 
 
-
-# Upload file Route
+##########################
+## Upload file Route    ##
+##########################
 @app.route("/upload", methods=["POST"])
 def upload():
 
@@ -52,31 +54,12 @@ def upload():
     **result
     })
 
+ 
     
 
-
-
-# Analyze and Sanitize
-@app.route("/analyze", methods=["POST"])
-def analyze():
-
-    print("Analyzing...")
-
-    if "file" not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
-
-    
-
-    # return jsonify({
-    #     "status": "success",
-    #     "rows": len(df),
-    #     "cols": len(df.columns),
-    #     "columns": list(df.columns)
-    # })
-
-    return None
-
-    
+##########################
+## Diagrams Route       ##
+##########################
 # Compute Persisyent Homology
 # Returns Persistence Diagram
 @app.route("/diagrams", methods=["POST"])
@@ -96,9 +79,38 @@ def diagrams():
         image_bytes,
         mimetype="image/png"
     )
-#######################################
-# Download example csv's route
-#######################################
+
+
+
+
+
+
+##########################
+## Barcodes Route       ##
+##########################
+@app.route("/barcodes", methods=["POST"])
+def barcodes():
+
+    print("barcodes")
+
+    file = request.files.get("file")
+
+    if not file:
+        return {"error": "No file supplied"}, 400
+
+    # Create plot
+    image_bytes = ph.barcode(file)
+
+    return send_file(
+        image_bytes,
+        mimetype="image/png"
+    )
+
+
+
+##################################
+# Download example csv's route  ##
+##################################
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DOWNLOAD_DIR = os.path.join(BASE_DIR, "csv_files")
 ALLOWED_FILES = {"S1.csv", "S2.csv", "S3.csv"}
