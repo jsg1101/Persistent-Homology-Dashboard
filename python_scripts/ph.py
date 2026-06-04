@@ -75,29 +75,50 @@ def barcode (data):
     dgm0 = diagrams[0]
     dgm1 = diagrams[1]
 
-    # Cap infinity values for H0 visibility
-    max_finite = max([p[1] for p in dgm1 if p[1] != np.inf] + [p[1] for p in dgm0 if p[1] != np.inf])
-    dgm0[dgm0 == np.inf] = max_finite * 1.2 
+        # 2. Dynamic threshold filtering
+    all_finite_lifetimes = [(p[1] - p[0]) for dgm in [dgm0, dgm1] for p in dgm if p[1] != np.inf]
+    max_persistence = max(all_finite_lifetimes) if all_finite_lifetimes else 1.0
 
-    # 2. Initialize the fig and ax objects
-    fig, ax = plt.subplots(figsize=(5, 5))
+    threshold_percentage = 0.10
+    min_persistence = max_persistence * threshold_percentage
 
-    # 3. Plot H0 bars
-    for i, (birth, death) in enumerate(dgm0):
-        ax.hlines(y=i, xmin=birth, xmax=death, colors='red', linewidth=2, label='$H_0$' if i == 0 else "")
+    filtered_dgm0 = [p for p in dgm0 if (p[1] - p[0]) >= min_persistence]
+    filtered_dgm1 = [p for p in dgm1 if (p[1] - p[0]) >= min_persistence]
 
-    # 4. Plot H1 bars (stacked above H0)
-    h0_count = len(dgm0)
-    for i, (birth, death) in enumerate(dgm1):
-        ax.hlines(y=h0_count + i, xmin=birth, xmax=death, colors='blue', linewidth=2, label='$H_1$' if i == 0 else "")
+    # 3. Cap infinity values
+    all_finite_deaths = [p[1] for p in filtered_dgm0 + filtered_dgm1 if p[1] != np.inf]
+    max_finite = max(all_finite_deaths) if all_finite_deaths else 1.0
+    filtered_dgm0 = [[p[0], max_finite * 1.2] if p[1] == np.inf else p for p in filtered_dgm0]
 
-    # 5. Customize using ax methods
-    ax.set_title("Persistence Barcode")
-    ax.set_xlabel("Filtration Value ($\epsilon$)")
-    ax.set_ylabel("Topological Features")
-    ax.grid(axis='x', linestyle='--')
-    ax.legend()
+    filtered_dgm0.sort(key=lambda x: x[0])
+    filtered_dgm1.sort(key=lambda x: x[0])
 
+    # 4. Create vertically stacked plots sharing the X-axis
+    # nrows=2 creates two subplots; sharex=True locks their horizontal scales together
+    fig, (ax0, ax1) = plt.subplots(nrows=2, ncols=1, figsize=(5, 6), sharex=True)
+
+    # 5. Plot H0 Bars (Top Plot)
+    for i, (birth, death) in enumerate(filtered_dgm0):
+        ax0.hlines(y=i, xmin=birth, xmax=death, colors='red', linewidth=2)
+    ax0.set_ylabel("$H_0$", rotation=0, labelpad=15, fontsize=12, fontweight='bold')
+    ax0.set_ylim(-1, max(len(filtered_dgm0) + 1, 8)) # Keeps bars compressed
+    ax0.get_yaxis().set_ticks([])                    # Hides numeric ticks
+    ax0.grid(axis='x', linestyle='--')
+
+    # 6. Plot H1 Bars (Bottom Plot)
+    for i, (birth, death) in enumerate(filtered_dgm1):
+        ax1.hlines(y=i, xmin=birth, xmax=death, colors='blue', linewidth=2)
+    ax1.set_ylabel("$H_1$", rotation=0, labelpad=15, fontsize=12, fontweight='bold')
+    ax1.set_ylim(-1, max(len(filtered_dgm1) + 1, 8)) # Keeps bars compressed
+    ax1.get_yaxis().set_ticks([])                    # Hides numeric ticks
+    ax1.grid(axis='x', linestyle='--')
+
+    # 7. Global Layout Configurations
+    ax1.set_xlabel("Filtration Value ($\epsilon$)")
+    fig.suptitle(f"Persistence Barcode (Filtered < {threshold_percentage*100:.0f}%)", y=0.98)
+
+    # Removes vertical whitespace gap between the two stacked plots
+    plt.subplots_adjust(hspace=0.1) 
     plt.tight_layout()
     plt.show()
 
