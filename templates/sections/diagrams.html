@@ -8,12 +8,75 @@
   {% include 'sections/components/file_summary.html' %}
 
 
+  <!-- Diagram Options -->
+  <!-- <div id="fileSummary" class="card hidden"> -->
+  <div  class="card hidden">
+
+    <!-- TOP ROW -->
+    <div class="options-top">
+
+        <!-- COLUMN 1 -->
+        <div class="options-col title-col">
+        <h2 class="options-title">Options</h2>
+        </div>
+
+        <!-- COLUMN 2 -->
+        <div class="options-col">
+          <label for="dimension">Dimension</label><br><br>
+
+            <label >
+              <input type="radio" name="dim" value="0">
+                H<sub>0</sub></span>
+            </label>
+        
+            <label >
+              <input type="radio" name="dim" value="1">
+                H<sub>0</sub> and H<sub>1</sub>
+            </label>
+        
+            <label >
+              <input type="radio" name="dim" value="2">
+                H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> 
+            </label>
+
+        </div>
+
+        <!-- COLUMN 3 -->
+        <div class="options-col">
+          <div class="selector-group">
+            <label for="metric">Metric</label>
+            <select id="metric">
+                <option>Select a size</option>
+                <option>Euclidean</option>
+                <option>Cosine</option>
+                <option>Manhatten</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- COLUMN 4 -->
+        <div class="options-col">
+          <span>Rows: <b id="rowCount">0</b></span>
+          <span>Cols: <b id="colCount">0</b></span>
+        </div>
+
+    </div>
+
+    <!-- Data quality overview -->
+    <!-- Button -->
+    <div class = "diagramBtn_container">
+      <button id ="diagramBtn">
+        Compute Diagram
+      </button>
+  </div>
+  
+</div>
 
   
   <!-- Diagram Options -->
   <div class="card hidden">
 
-    <h2>Diagram Options</h2>
+    <h2>Options</h2>
     <p></p>
 
     <!-- Dimension Options -->
@@ -50,11 +113,11 @@
     </div>
 
     <!-- Button -->
-    <div class = "diagramBtn_container">
+    <!-- <div class = "diagramBtn_container">
         <button id ="diagramBtn">
           Compute Diagram
         </button>
-    </div>
+    </div> -->
     
     
   </div>

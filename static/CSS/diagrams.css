@@ -1,6 +1,6 @@
 
 
-
+/* Button */
 .diagramBtn_container{
     display: flex;
 
@@ -72,7 +72,7 @@
 
   }
 
-
+/* Diagram Area */
 #diagram-container{
     display: flex;
     /* Horizontally centers the child */
@@ -90,8 +90,8 @@
     display: none;
   }
 
-
-  .selectors {
+/* Options */
+.selectors {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -109,3 +109,56 @@
     width: 100%;
     box-sizing: border-box;
 }
+
+
+
+
+/* =========================================================
+  Options Panel
+========================================================= */
+.options-top {
+    display: grid;
+  
+    /* responsive columns */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    /* grid-template-columns: 1.2fr 1fr 1fr; */
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  
+  .options-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+     /* prevents overflow */
+     min-width: 0;
+  }
+  
+  .options-col span {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  .title-col {
+    justify-content: center;
+  }
+  
+  .options-title {
+    margin: 0;
+  }
+  
+  /* Optional: better mobile layout */
+  
+  
+  @media (max-width: 800px) {
+  
+    .options-top {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  
+  }
+
+ 
