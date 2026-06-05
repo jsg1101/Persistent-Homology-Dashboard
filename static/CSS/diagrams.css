@@ -91,4 +91,21 @@
   }
 
 
-  
+  .selectors {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.selector-group {
+    display: flex;
+    flex-direction: column;
+    /* each dropdown gets equal space */
+    /* flex: 1;  */
+}
+
+.selector-group select {
+    width: 100%;
+    box-sizing: border-box;
+}

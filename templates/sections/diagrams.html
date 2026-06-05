@@ -1,18 +1,55 @@
 
 
 <link rel="stylesheet" href="{{ url_for('static', filename='CSS/diagrams.css') }}">
+
 <div class="page" id="diagrams-page">
 
+  <!-- File Summary -->
   {% include 'sections/components/file_summary.html' %}
 
 
 
   
-
+  <!-- Diagram Options -->
   <div class="card hidden">
-    <h2>File Name: <b id="fileName">0</b> </h2>
+
+    <h2>Diagram Options</h2>
     <p></p>
 
+    <!-- Dimension Options -->
+    <div class="selectors">
+      <div class="selector-group">
+          <label for="dimension">Dimension</label>
+          <select id="dimension">
+              <option>Select a color</option>
+              <option>H<sub>0</sub></option>
+              <option>H<sub>0</sub >and H<sub>1</sub></option>
+              <option>H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> </option>
+          </select>
+      </div>
+  
+      <div class="selector-group">
+          <label for="metric">Metric</label>
+          <select id="metric">
+              <option>Select a size</option>
+              <option>Euclidean</option>
+              <option>Cosine</option>
+              <option>Manhatten</option>
+          </select>
+      </div>
+  
+      <div class="selector-group">
+          <label for="material">Material Choice</label>
+          <select id="material">
+              <option>Select a material</option>
+              <option>Wood</option>
+              <option>Metal</option>
+              <option>Plastic</option>
+          </select>
+      </div>
+    </div>
+
+    <!-- Button -->
     <div class = "diagramBtn_container">
         <button id ="diagramBtn">
           Compute Diagram
@@ -22,7 +59,7 @@
     
   </div>
 
-  
+  <!-- Diagram -->
   <div id="diagram-container" class="card hidden">
       <img id="diagram-image" />
   </div>

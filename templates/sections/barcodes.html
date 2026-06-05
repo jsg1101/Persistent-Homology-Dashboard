@@ -1,25 +1,42 @@
 
 
-
 <link rel="stylesheet" href="{{ url_for('static', filename='CSS/barcodes.css') }}">
+
 <div class="page" id="barcodes-page">
 
-    {% include 'sections/components/file_summary.html' %}
-
-    <div class="card hidden">
-        <h2>Analytics</h2>
-        <p>Charts and statistics go here.</p>
-        <div class = "barcodeBtn_container">
-          <button id ="barcodeBtn">
-            Compute Barcode
-          </button>
-        </div>
+  <!-- File Summary -->
+  {% include 'sections/components/file_summary.html' %}
 
 
-        <div id="barcode-container" class="card hidden">
-          <img id="barcode-image" />
-        </div>
+  <!-- Barcode Options -->
+  <div class="card hidden">
 
+    <h2>File Name: <b id="fileName">0</b> </h2>
+    <p></p>
+
+    <!-- Button -->
+    <div class = "barcodeBtn_container">
+      <button id ="barcodeBtn">
+        Compute Barcode
+      </button>
     </div>
+    
+    
+  </div>
+
+  <div id="barcode-container" class="card hidden">
+    <img id="barcode-image" />
+  </div>
+
+  <!-- <div class="card hidden">
+      <h2>Analytics</h2>
+      <p>Charts and statistics go here.</p>
+
+      
+
+
+        
+
+    </div> -->
 
 </div>

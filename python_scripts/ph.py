@@ -60,14 +60,11 @@ def ph_diagram (data):
 ## Barcode
 ########################################
 def barcode (data):
-    # 1. Generate dummy data & compute homology
-    # data = np.random.random((100, 2))
-
-
 
     df = pd.read_csv(data)
 
     data_array = df.to_numpy()
+    
     diagrams = ripser(data_array)['dgms']
 
     # 2. Extract H0 and H1 diagrams
@@ -118,34 +115,11 @@ def barcode (data):
     fig.suptitle(f"Persistence Barcode (Filtered < {threshold_percentage*100:.0f}%)", y=0.98)
 
     # Removes vertical whitespace gap between the two stacked plots
-    plt.subplots_adjust(hspace=0.1) 
+    plt.subplots_adjust(hspace=0.1)
+
     plt.tight_layout()
-    plt.show()
+    # plt.show()
 
-    # df = pd.read_csv(data)
-
-    # data_array = df.to_numpy()
-
-    
-
-
-    # result = ripser(data_array)
-    # dgms = result['dgms']
-    # print(dgms)
-
-    # fig, ax = plt.subplots(figsize=(5, 5))
-    # plot_diagrams(dgms, plot_type='barcode')
-
-
-    # plot_diagrams(dgms, ax=ax)
-
-    # plt.figure(figsize=(5,5))
-    # plot_diagrams(dgms)
-    # plot_diagrams(dgms, show=True)
-
-
-    # 3. Plot the data as a barcode instead of a diagram
-    # persim.plot_diagrams(diagrams, barcode=True)
 
 
     buffer = io.BytesIO()
@@ -158,22 +132,5 @@ def barcode (data):
 
     return buffer
 
-# # 1. Generate data (using a circle to ensure features exist)
-# # t = np.linspace(0, 2*np.pi, 100)
-# # data = np.c_[np.cos(t), np.sin(t)] + 0.1 * np.random.randn(100, 2)
 
-# # 2. Compute diagrams
-# result = ripser(data)
-# dgms = result['dgms']
-
-# # 3. Validation: Print types to debug
-# print(f"Diagrams type: {type(dgms)}")
-# for i, d in enumerate(dgms):
-#     print(f"H{i} shape: {d.shape}")
-
-# # 4. Plotting
-# plt.figure(figsize=(5,5))
-# plot_diagrams(dgms, show=True)
-
-# print(dgms)
 
