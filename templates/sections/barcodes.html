@@ -11,8 +11,75 @@
   <!-- Barcode Options -->
   <div class="card hidden">
 
-    <h2>File Name: <b id="fileName">0</b> </h2>
-    <p></p>
+    <div class="options-top">
+
+      <!-- COLUMN 1 -->
+      <div class="options-col title-col">
+      <h2 class="options-title">Options</h2>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="options-col">
+        <label for="dimension"><b>Dimension</b></label><br>
+
+          <label >
+            <input type="checkbox" name="dim" value="0" checked>
+              H<sub>0</sub></span>
+          </label>
+      
+          <label >
+            <input type="checkbox" name="dim" value="1" checked>
+              H<sub>1</sub>
+          </label>
+      
+          <label >
+            <input type="checkbox" name="dim" value="2">
+              H<sub>2</sub> 
+          </label>
+
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="options-col">
+        <label for="dimension"><b>Metric</b></label><br>
+
+          <label >
+            <input type="radio" name="metric" value="0" checked>
+              Euclidean
+          </label>
+      
+          <label >
+            <input type="radio" name="metric" value="1">
+              Cosine
+          </label>
+      
+          <label >
+            <input type="radio" name="metric" value="2">
+              Manhattan 
+          </label>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="options-col">
+        <label for="Coeff"><b>Coefficients Z/pZ</b></label><br>
+
+          <label >
+            <input type="radio" name="Coeff" value="0">
+              H<sub>0</sub></span>
+          </label>
+      
+          <label >
+            <input type="radio" name="Coeff" value="1">
+              H<sub>0</sub> and H<sub>1</sub>
+          </label>
+      
+          <label >
+            <input type="radio" name="Coeff" value="2" checked>
+              H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> 
+          </label>
+      </div>
+
+  </div>
 
     <!-- Button -->
     <div class = "barcodeBtn_container">

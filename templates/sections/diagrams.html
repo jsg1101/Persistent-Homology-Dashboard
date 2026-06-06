@@ -22,42 +22,63 @@
 
         <!-- COLUMN 2 -->
         <div class="options-col">
-          <label for="dimension">Dimension</label><br><br>
+          <label for="dimension"><b>Dimension</b></label><br>
 
             <label >
-              <input type="radio" name="dim" value="0">
+              <input type="checkbox" name="dim" value="0" checked>
                 H<sub>0</sub></span>
             </label>
         
             <label >
-              <input type="radio" name="dim" value="1">
-                H<sub>0</sub> and H<sub>1</sub>
+              <input type="checkbox" name="dim" value="1" checked>
+                H<sub>1</sub>
             </label>
         
             <label >
-              <input type="radio" name="dim" value="2">
-                H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> 
+              <input type="checkbox" name="dim" value="2">
+                H<sub>2</sub> 
             </label>
 
         </div>
 
         <!-- COLUMN 3 -->
         <div class="options-col">
-          <div class="selector-group">
-            <label for="metric">Metric</label>
-            <select id="metric">
-                <option>Select a size</option>
-                <option>Euclidean</option>
-                <option>Cosine</option>
-                <option>Manhatten</option>
-            </select>
-          </div>
+          <label for="dimension"><b>Metric</b></label><br>
+
+            <label >
+              <input type="radio" name="metric" value="0" checked>
+                Euclidean
+            </label>
+        
+            <label >
+              <input type="radio" name="metric" value="1">
+                Cosine
+            </label>
+        
+            <label >
+              <input type="radio" name="metric" value="2">
+                Manhattan 
+            </label>
         </div>
 
         <!-- COLUMN 4 -->
         <div class="options-col">
-          <span>Rows: <b id="rowCount">0</b></span>
-          <span>Cols: <b id="colCount">0</b></span>
+          <label for="Coeff"><b>Coefficients Z/pZ</b></label><br>
+
+            <label >
+              <input type="radio" name="Coeff" value="0">
+                H<sub>0</sub></span>
+            </label>
+        
+            <label >
+              <input type="radio" name="Coeff" value="1">
+                H<sub>0</sub> and H<sub>1</sub>
+            </label>
+        
+            <label >
+              <input type="radio" name="Coeff" value="2" checked>
+                H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> 
+            </label>
         </div>
 
     </div>
@@ -74,53 +95,7 @@
 
   
   <!-- Diagram Options -->
-  <div class="card hidden">
-
-    <h2>Options</h2>
-    <p></p>
-
-    <!-- Dimension Options -->
-    <div class="selectors">
-      <div class="selector-group">
-          <label for="dimension">Dimension</label>
-          <select id="dimension">
-              <option>Select a color</option>
-              <option>H<sub>0</sub></option>
-              <option>H<sub>0</sub >and H<sub>1</sub></option>
-              <option>H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> </option>
-          </select>
-      </div>
   
-      <div class="selector-group">
-          <label for="metric">Metric</label>
-          <select id="metric">
-              <option>Select a size</option>
-              <option>Euclidean</option>
-              <option>Cosine</option>
-              <option>Manhatten</option>
-          </select>
-      </div>
-  
-      <div class="selector-group">
-          <label for="material">Material Choice</label>
-          <select id="material">
-              <option>Select a material</option>
-              <option>Wood</option>
-              <option>Metal</option>
-              <option>Plastic</option>
-          </select>
-      </div>
-    </div>
-
-    <!-- Button -->
-    <!-- <div class = "diagramBtn_container">
-        <button id ="diagramBtn">
-          Compute Diagram
-        </button>
-    </div> -->
-    
-    
-  </div>
 
   <!-- Diagram -->
   <div id="diagram-container" class="card hidden">
