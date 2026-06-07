@@ -11,7 +11,19 @@ document.addEventListener("drop", e => e.preventDefault());
 // =========================================================
 window.addEventListener("DOMContentLoaded", () => {
   previewInput.value = 10;
+
+  // force default radio states
+  //  option card diagram
+  document.querySelector('input[name="dimension_diagram"][value="1"]').checked = true;
+  document.querySelector('input[name="metric_diagram"][value="0"]').checked = true;
+  document.getElementById("prime_diagram").value = 2;
+  //  option card barcodes
+  document.querySelector('input[name="dimension_barcodes"][value="1"]').checked = true;
+  document.querySelector('input[name="metric_barcodes"][value="0"]').checked = true;
+  document.getElementById("prime_barcodes").value = 2;
+
 });
+
 
 // =========================================================
 // DOM ELEMENT REFERENCES

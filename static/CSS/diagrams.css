@@ -162,6 +162,24 @@
   
   }
 
- .b{
-    font-weight: 600;
- }
+  .options-col input[type="number"] {
+    padding: 0.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-top: 0.25rem;
+}
+
+.input-row input[type="number"] {
+    width: 65px;
+}
+
