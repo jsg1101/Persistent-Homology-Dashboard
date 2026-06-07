@@ -113,7 +113,7 @@ def barcodes():
 ##################################
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DOWNLOAD_DIR = os.path.join(BASE_DIR, "csv_files")
-ALLOWED_FILES = {"S1.csv", "S2.csv", "S3.csv"}
+ALLOWED_FILES = {"S1.csv", "S2.csv", "S3.csv","S1xS1.csv"}
 
 @app.route("/download/<filename>")
 def download(filename):

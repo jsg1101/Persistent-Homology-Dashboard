@@ -49,7 +49,7 @@ def S2():
     y = radius * np.sin(theta) * np.sin(phi)
     z = radius * np.cos(theta)
 
-    return (x, y, z)
+    return (x, y, z,phi)
 
 
 # mapping the color to theta will color the donut in rings wrapping around the tube, while
@@ -71,7 +71,7 @@ def Torus(num_points=1000, R=2.0, r=.5):
     y = (R + r * np.cos(theta)) * np.sin(phi)
     z = r * np.sin(theta)
 
-    return (x, y, z)
+    return (x, y, z,phi)
 
 # When you pass this data into your Plotly setup, try setting
 # the marker color to the original t array (color=t). The color
@@ -239,7 +239,7 @@ def plot_data(data):
 
 
 
-data = S1()
+data = Torus()
 print(type(data))
 
 
@@ -249,7 +249,7 @@ print(arr.shape)
 print(arr.size)
 
 np.savetxt(
-    "S1.csv",
+    "S1xS1.csv",
     arr,
     delimiter=",",
     fmt="%g"
@@ -262,10 +262,10 @@ np.savetxt(
 # my_plot = plot_data(InfinityTube())
 # my_plot = plot_data(Torus())
 # my_plot = plot_data(noisy_S1())
-# my_plot = plot_data(data)
+my_plot = plot_data(data)
 
 # Display 
-# my_plot.show()
+my_plot.show()
 
 # Save to interactive HTML file
-# my_plot.write_html("S1.html")
+my_plot.write_html("S1xS1.html")
