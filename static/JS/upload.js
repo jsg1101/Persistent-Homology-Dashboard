@@ -27,56 +27,55 @@ dropZone.addEventListener("drop", e => {
 // =========================================================
 function handleFile(file) {
 
-    // Store original file for backend upload
-    window.__uploadedFile = file;
+  // Store original file for backend upload
+  window.__uploadedFile = file;
  
-   // Reset preview rows
-   previewInput.value = 10;
+  // Reset preview rows
+  previewInput.value = 10;
  
-   spinner.classList.remove("hidden");
+  spinner.classList.remove("hidden");
  
-   const reader = new FileReader();
-   // #######
-   const formData = new FormData();
-   formData.append("file", file);
+  const reader = new FileReader();
+  
+  const formData = new FormData();
+  formData.append("file", file);
  
-   fetch("/upload", {
-   method: "POST",
-   body: formData
-   })
-   .then(async response => {
+  fetch("/upload", {
+    method: "POST",
+    body: formData
+  })
+   
+  .then(async response => {
+      const result = await response.json();
+      console.log(result);
  
-   const result = await response.json();
-   console.log(result);
+    if (!response.ok) {
+      throw new Error(result.error || "Upload failed JS");
+    }
  
-   if (!response.ok) {
-     throw new Error(result.error || "Upload failed JS");
-   }
+    window.__lastData = result.data;
  
-   window.__lastData = result.data;
+    updateUI(file, result);
  
-   updateUI(file, result);
+    renderPreview(result.data);
  
-   renderPreview(result.data);
+  
  
-  //  renderTable(result.data);
- 
-   diagramCards.forEach(card => {
-     card.classList.remove("hidden");
-   });
+    diagramCards.forEach(card => {
+      card.classList.remove("hidden");
+    });
 
-   barCodeCards.forEach(card => {
-    card.classList.remove("hidden");
-  });
+    barcodeCards.forEach(card => {
+      card.classList.remove("hidden");
+    });
  
-   spinner.classList.add("hidden");
+    spinner.classList.add("hidden");
  
- })
- .catch(err => {
+  })
+  .catch(err => {
  
-   errorMsg.textContent = err.message;
- 
-   spinner.classList.add("hidden");
+    errorMsg.textContent = err.message;
+    spinner.classList.add("hidden");
  
  });
- }
+}

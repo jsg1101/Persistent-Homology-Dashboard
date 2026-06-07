@@ -61,7 +61,9 @@ const table = document.getElementById("dataTable");
 
 
 const diagramCards = document.querySelectorAll("#diagrams-page .card");
-const barCodeCards = document.querySelectorAll("#barcodes-page .card");
+const barcodeCards = document.querySelectorAll("#barcodes-page .card");
+
+
 // Navigation
 const navItems = document.querySelectorAll(".nav-item");
 const pages = document.querySelectorAll(".page");

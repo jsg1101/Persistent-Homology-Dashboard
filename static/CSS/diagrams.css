@@ -132,6 +132,7 @@
   .options-col {
     display: flex;
     flex-direction: column;
+    
     gap: 0.5rem;
      /* prevents overflow */
      min-width: 0;

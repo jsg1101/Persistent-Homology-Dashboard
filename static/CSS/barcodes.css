@@ -90,3 +90,12 @@
 #barcode-container.hidden {
     display: none;
 }
+
+
+
+.subtitle {
+    display: block;
+    margin-top: -0.25rem;
+    font-size: 0.85rem;
+    color: #666;
+}
