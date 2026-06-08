@@ -5,7 +5,19 @@
 
 
         <!-- S1 Plot Card ------------------------------------------------------->
-        <div class="plot-card">
+        {% with
+            title="S<sup>1</sup>",
+            description="75 points sampled from a circle in &#8477;<sup>3</sup>",
+            details="radius R = 2",
+            filename="S1.csv",
+            size="2.1 KB",
+            rows="75",
+            cols="3",
+            plot_path="plots/S1.html"
+        %}
+            {% include 'sections/components/example_plot_card.html' %}
+        {% endwith %}
+        <!-- <div class="plot-card">
             <div class="plot-sidebar">
 
                 <div>
@@ -25,7 +37,7 @@
                         <div>Name: <b>S1.csv</b></div>
                         <div>Rows: <b>75</b></div>
 
-                        <div>Size: <b>2.1 KB</b></div>
+                        <div>Size: <b>1.5 KB</b></div>
                         <div>Cols: <b>3</b></div>
                     </div>
 
@@ -42,11 +54,24 @@
                 <iframe src="{{ url_for('static', filename='plots/S1.html') }}" scrolling="no" loading="lazy">
                 </iframe>
             </div>
-        </div>
+        </div> -->
 
 
         <!-- S1 w/noise Plot Card ------------------------------------->
-        <div class="plot-card">
+        {% with
+            title="S<sup>1</sup> with Noise",
+            description="1000 points sampled from circle with noise in &#8477;<sup>3</sup>",
+            details="radius R = 2",
+            filename="S1noise.csv",
+            size="25 KB",
+            rows="1000",
+            cols="3",
+            plot_path="plots/noisy_S1.html"
+        %}
+            {% include 'sections/components/example_plot_card.html' %}
+        {% endwith %}
+        
+        <!-- <div class="plot-card">
             <div class="plot-sidebar">
 
                 <div>
@@ -83,11 +108,24 @@
                 <iframe src="{{ url_for('static', filename='plots/noisy_S1.html') }}" scrolling="no" loading="lazy">
                 </iframe>
             </div>
-        </div>
+        </div> -->
 
 
         <!-- S2 Plot Card ------------------------------------------------------->
-        <div class="plot-card">
+        {% with
+            title="S<sup>2</sup>",
+            description="1500 points sampled from a sphere in &#8477;<sup>3</sup>",
+            details="radius R = 2",
+            filename="S2.csv",
+            size="50 KB",
+            rows="1500",
+            cols="3",
+            plot_path="plots/S2.html"
+        %}
+            {% include 'sections/components/example_plot_card.html' %}
+        {% endwith %}
+        
+        <!-- <div class="plot-card">
             <div class="plot-sidebar">
 
                 <div>
@@ -107,7 +145,7 @@
                         <div>Name: <b>S2.csv</b></div>
                         <div>Rows: <b>1500</b></div>
 
-                        <div>Size: <b>??? KB</b></div>
+                        <div>Size: <b>40.8 KB</b></div>
                         <div>Cols: <b>3</b></div>
                     </div>
 
@@ -124,11 +162,25 @@
                 <iframe src="{{ url_for('static', filename='plots/S2.html') }}" scrolling="no" loading="lazy">
                 </iframe>
             </div>
-        </div>
+        </div> -->
 
 
         <!-- S1xS1 Plot Card ---------------------------------------------------->
-        <div class="plot-card">
+        
+        {% with
+            title="S<sup>1</sup> x S<sup>1</sup>",
+            description="1000 points sampled from a torus in &#8477;<sup>3</sup>",
+            details="Major radius R = 2<br>Minor radius r = 0.5",
+            filename="S1xS1.csv",
+            size="35 KB",
+            rows="1000",
+            cols="3",
+            plot_path="plots/S1xS1.html"
+        %}
+            {% include 'sections/components/example_plot_card.html' %}
+        {% endwith %}
+        
+        <!-- <div class="plot-card">
             <div class="plot-sidebar">
 
                 <div>
@@ -149,7 +201,7 @@
                         <div>Name: <b>S1xS1.csv</b></div>
                         <div>Rows: <b>1000</b></div>
 
-                        <div>Size: <b>??? KB</b></div>
+                        <div>Size: <b>27.4 KB</b></div>
                         <div>Cols: <b>3</b></div>
                     </div>
 
@@ -166,7 +218,7 @@
                 <iframe src="{{ url_for('static', filename='plots/S1xS1.html') }}" scrolling="no" loading="lazy">
                 </iframe>
             </div>
-        </div>
+        </div> -->
 
     </div>
 

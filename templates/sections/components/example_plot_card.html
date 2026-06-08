@@ -1,0 +1,47 @@
+<div class="plot-card">
+
+    <div class="plot-sidebar">
+
+        <div>
+            <h2 class="plot-title">{{ title|safe }}</h2>
+
+            <p class="plot-description">
+                {{ description|safe }}
+            </p>
+
+            <p class="plot-description">
+                {{ details|safe }}
+            </p>
+        </div>
+
+        <div>
+
+            <div class="file-info">
+
+                <div>Name: <b>{{ filename }}</b></div>
+                <div>Rows: <b>{{ rows }}</b></div>
+
+                <div>Size: <b>{{ size }}</b></div>
+                <div>Cols: <b>{{ cols }}</b></div>
+
+            </div>
+
+            <div class="download-btn_container">
+                <button class="download-btn" data-file="{{ filename }}">
+                    Download CSV
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="plot-area">
+        <iframe
+            src="{{ url_for('static', filename=plot_path) }}"
+            scrolling="no"
+            loading="lazy">
+        </iframe>
+    </div>
+
+</div>
