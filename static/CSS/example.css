@@ -41,7 +41,7 @@
     /* border-radius: 16px;
     padding: 24px; */
     display: grid;
-    grid-template-columns: 245px 1fr;
+    grid-template-columns: 300px 1fr;
     gap: 24px;
     align-items: stretch;
 
