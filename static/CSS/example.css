@@ -41,7 +41,7 @@
     /* border-radius: 16px;
     padding: 24px; */
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 245px 1fr;
     gap: 24px;
     align-items: stretch;
 
@@ -53,6 +53,8 @@
   .plot-sidebar {
     display: flex;
     flex-direction: column;
+
+    /* margin-top: auto; */
     justify-content: space-between;
     gap: 20px;
     /* border-right: 5px solid #38bdf8; */
@@ -72,6 +74,14 @@
     color: #6b7280;
     line-height: 1.5;
   }
+
+
+  .file-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.4rem 1rem;
+    margin-bottom: 1rem;
+}
 
   .download-btn_container{
     display: flex;
