@@ -5,24 +5,52 @@
 // UI UPDATE (summary panel)
 // =========================================================
 function updateUI(file, r) {
-    fileSummary.classList.remove("hidden");
+
+
+    // 1. Reveal all file summary cards
+    fileSummaries.forEach(function(fileSummary) {
+      fileSummary.classList.remove("hidden");
+    });
+
+    // Reveal the preview panel
     filePreview.classList.remove("hidden");
   
-    // fileName.textContent = "NAME: " + file.name;
-    // fileSize.textContent = "SIZE: " + (file.size / 1024).toFixed(1) + " KB";
+    // Update all file names
+    fileNames.forEach(function(fileName) {
+      fileName.textContent = file.name;
+    });
+
+    // Update all file sizes
+    fileSizes.forEach(function(fileSize) {
+      fileSize.textContent = (file.size / 1024).toFixed(1) + " KB";
+    });
   
-    fileName.textContent =  file.name;
-    fileSize.textContent =   (file.size / 1024).toFixed(1) + " KB";
-  
-  
-    // rowCount.textContent = r.flagged.length - 1;
-    rowCount.textContent = r.rows;
-    // colCount.textContent = r.flagged[0]?.length || 0;
-    colCount.textContent = r.cols;
-  
-    missingEl.textContent = r.missing;
-    invalidEl.textContent = r.invalid;
-    totalEl.textContent = r.total_issues;
+    // Update all row counts
+    rowCounts.forEach(function(rowCount) {
+      rowCount.textContent = r.rows;
+    });
+
+     // Update all column counts
+    colCounts.forEach(function(colCount) {
+      colCount.textContent = r.cols;
+    });
+
+    // Update all missing elements
+    missingEls.forEach(function(missingEl) {
+      missingEl.textContent = r.missing;
+    });
+
+    // Update all invalid elements
+    invalidEls.forEach(function(invalidEl) {
+      invalidEl.textContent = r.invalid;
+    });
+
+    // Update all total issues elements
+    totalEls.forEach(function(totalEl) {
+      totalEl.textContent = r.total_issues;
+    });
+
+
   }
   
   

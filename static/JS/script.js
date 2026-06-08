@@ -37,17 +37,31 @@ const errorMsg = document.getElementById("errorMsg");
 
 // File Summary
 
-const fileSummary = document.getElementById("fileSummary");
+// const fileSummary = document.getElementById("fileSummary");
+const fileSummaries = document.querySelectorAll(".fileSummary");
 
-const fileName = document.getElementById("fileName");
-const fileSize = document.getElementById("fileSize");
+// const fileName = document.getElementById("fileName");
+const fileNames = document.querySelectorAll(".fileName");
 
-const rowCount = document.getElementById("rowCount");
-const colCount = document.getElementById("colCount");
 
-const missingEl = document.getElementById("missingCount");
-const invalidEl = document.getElementById("invalidCount");
-const totalEl = document.getElementById("totalIssues");
+// const fileSize = document.getElementById("fileSize");
+const fileSizes = document.querySelectorAll(".fileSize");
+
+// const rowCount = document.getElementById("rowCount");
+const rowCounts = document.querySelectorAll(".rowCount");
+
+// const colCount = document.getElementById("colCount");
+const colCounts = document.querySelectorAll(".colCount");
+
+// const missingEl = document.getElementById("missingCount");
+const missingEls = document.querySelectorAll(".missingCount");
+
+// const invalidEl = document.getElementById("invalidCount");
+const invalidEls = document.querySelectorAll(".invalidCount")
+
+
+// const totalEl = document.getElementById("totalIssues");
+const totalEls = document.querySelectorAll(".totalIssues");
 
 //File Preview
 

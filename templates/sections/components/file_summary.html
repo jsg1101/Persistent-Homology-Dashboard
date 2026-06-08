@@ -1,48 +1,63 @@
  <!-- =====================================================
       FILE SUMMARY PANEL (hidden until file is loaded)
     ====================================================== -->
-    <div id="fileSummary" class="card hidden">
+    <!-- <div id="fileSummary" class="card hidden"> -->
 
-        <!-- TOP ROW -->
-        <div class="summary-top">
 
-            <!-- COLUMN 1 -->
-            <div class="summary-col title-col">
-            <h2 class="summary-title">File Summary</h2>
+        <div class="fileSummary card hidden">
+            <!-- TOP ROW -->
+            <div class="summary-top">
+                <!-- COLUMN 1 -->
+                <div class="summary-col title-col">
+                    <h2 class="summary-title">File Summary</h2>
+                </div>
+        
+                <!-- COLUMN 2 -->
+                <div class="summary-col">
+                    <!-- Changed id to class -->
+                    <span>Name: <b class="fileName">0</b></span>
+                    <span>Size: <b class="fileSize">0</b></span>
+                </div>
+        
+                <!-- COLUMN 3 -->
+                <div class="summary-col">
+                    <!-- Changed id to class -->
+                    <span>Rows: <b class="rowCount">0</b></span>
+                    <span>Cols: <b class="colCount">0</b></span>
+                </div>
             </div>
-
-            <!-- COLUMN 2 -->
-            <div class="summary-col">
-                <span>Name: <b id="fileName">0</b></span>
-                <span>Size: <b id="fileSize">0</b></span>
+        
+            <!-- Data quality overview -->
+            <div class="issues-panel">
+                <div class="issue-box total">
+                    <!-- Changed id to class -->
+                    <h2 class="totalIssues">0</h2>
+                    <p>Total Issues</p>
+                </div>
+        
+                <div class="issue-box missing">
+                    <!-- Changed id to class -->
+                    <h2 class="missingCount">0</h2>
+                    <p>Missing or NaN</p>
+                </div>
+        
+                <div class="issue-box invalid">
+                    <!-- Changed id to class -->
+                    <h2 class="invalidCount">0</h2>
+                    <p>Invalid</p>
+                </div>
             </div>
-
-            <!-- COLUMN 3 -->
-            <div class="summary-col">
-                <span>Rows: <b id="rowCount">0</b></span>
-                <span>Cols: <b id="colCount">0</b></span>
-            </div>
-
         </div>
 
-        <!-- Data quality overview -->
-        <div class="issues-panel">
 
-            <div class="issue-box total">
-                <h2 id="totalIssues">0</h2>
-                <p>Total Issues</p>
-            </div>
 
-            <div class="issue-box missing">
-                <h2 id="missingCount">0</h2>
-                <p>Missing or NaN</p>
-            </div>
 
-            <div class="issue-box invalid">
-                <h2 id="invalidCount">0</h2>
-                <p>Invalid</p>
-            </div>
 
-        </div>
-      
-    </div>
+
+
+
+
+
+
+
+
