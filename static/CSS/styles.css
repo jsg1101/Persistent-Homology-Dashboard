@@ -247,6 +247,19 @@ html, body {
   font-size: 26px;
 }
 
+.issue-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.issue-status-icon {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
 .issue-box p {
   margin: 5px 0 0;
   font-size: 13px;
@@ -267,6 +280,28 @@ html, body {
 .issue-box.total {
   background: #e2e8f0;
   border: 3px solid gray;
+}
+
+
+
+/* No issues found */
+.issue-box.total.success {
+  background: #dcfce7;
+  border: 3px solid #16a34a;
+}
+
+.issue-box.total.success .issue-status-icon {
+  color: #16a34a;
+}
+
+/* Issues found */
+.issue-box.total.error {
+  background: #fee2e2;
+  border: 3px solid #dc2626;
+}
+
+.issue-box.total.error .issue-status-icon {
+  color: #dc2626;
 }
 
 /* =========================================================

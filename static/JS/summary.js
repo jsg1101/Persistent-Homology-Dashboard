@@ -4,7 +4,7 @@
 // =========================================================
 // UI UPDATE (summary panel and preview panel)
 // =========================================================
-function renderSummary(file, r) {
+function renderSummary(file, result) {
 
 
     // Reveal all file summary cards
@@ -27,29 +27,52 @@ function renderSummary(file, r) {
   
     // Update all row counts
     rowCounts.forEach(function(rowCount) {
-      rowCount.textContent = r.rows;
+      rowCount.textContent = result.rows;
     });
 
      // Update all column counts
     colCounts.forEach(function(colCount) {
-      colCount.textContent = r.cols;
+      colCount.textContent = result.cols;
     });
 
     // Update all missing elements
     missingEls.forEach(function(missingEl) {
-      missingEl.textContent = r.missing;
+      missingEl.textContent = result.missing;
     });
 
     // Update all invalid elements
     invalidEls.forEach(function(invalidEl) {
-      invalidEl.textContent = r.invalid;
+      invalidEl.textContent = result.invalid;
     });
 
     // Update all total issues elements
     totalEls.forEach(function(totalEl) {
-      totalEl.textContent = r.total_issues;
+      totalEl.textContent = result.total_issues;
     });
 
+
+
+
+    fileSummaries.forEach(card => {
+
+      const totalBox = card.querySelector(".issue-box.total");
+      const statusIcon = card.querySelector(".issue-status-icon");
+  
+      totalBox.classList.remove("success", "error");
+  
+      if (result.total_issues === 0) {
+  
+          totalBox.classList.add("success");
+          statusIcon.textContent = "✅";
+  
+      } else {
+  
+          totalBox.classList.add("error");
+          statusIcon.textContent = "❌";
+  
+      }
+  
+    });
 
   }
   
