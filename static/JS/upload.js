@@ -55,19 +55,19 @@ function handleFile(file) {
  
     window.__lastData = result.data;
  
-    updateUI(file, result);
+    renderSummary(file, result);
  
     renderPreview(result.data);
  
   
  
-    diagramCards.forEach(card => {
-      card.classList.remove("hidden");
-    });
+    // diagramCards.forEach(card => {
+    //   card.classList.remove("hidden");
+    // });
 
-    barcodeCards.forEach(card => {
-      card.classList.remove("hidden");
-    });
+    // barcodeCards.forEach(card => {
+    //   card.classList.remove("hidden");
+    // });
  
     spinner.classList.add("hidden");
  

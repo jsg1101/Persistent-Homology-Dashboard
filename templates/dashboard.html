@@ -11,31 +11,27 @@
   <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='images/terta_gif.gif') }}"> -->
 
   <!-- Main stylesheet -->
-  <!-- <link rel="stylesheet" href="styles.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
 
-  
-  
 </head>
 
 <body>
 
 <!-- =========================================================
-  SIDEBAR NAVIGATION (fixed left panel)
+  SIDEBAR NAVIGATION 
 ========================================================= -->
 <div class="sidebar">
+
   <!-- <img src="{{ url_for('static', filename='favicon/tetra.svg') }}" alt="My Flask Animation"
    width="75" height="75"> -->
+
   <h2>Homology Dashboard</h2>
 
   <ul class="nav">
 
-    <li class="nav-item" data-page="instructions">
-      Instructions</li>
+    <li class="nav-item" data-page="instructions">Instructions</li>
 
-    <li class="nav-item active" data-page="upload">
-      Upload Data
-    </li>
+    <li class="nav-item active" data-page="upload">Upload Data</li>
     
     <li class="nav-item" data-page="diagrams">Persistence Diagrams</li>
 
@@ -64,36 +60,53 @@
 
   <div class="content">
 
+    <!-- Instructions page -->
+    {% include 'sections/instructions.html' %}
     
-
+    <!-- Upload page -->
     {% include 'sections/upload.html' %}
 
+    <!-- Diagrams page -->
     {% include 'sections/diagrams.html' %} 
-    {% include 'sections/barcodes.html' %} 
+
+    <!-- Barcodes page -->
+    {% include 'sections/barcodes.html' %}
+    
+    <!-- Examples page -->
     {% include 'sections/examples.html' %}
-    {% include 'sections/instructions.html' %}
   
   </div>
 
-    
-
-
 </div>
 
-<!-- Main application logic -->
 
+<!-- =========================================================
+  Application logic
+========================================================= -->
 
+<!-- Main/Global -->
 <script src="{{ url_for('static', filename='JS/script.js') }}"></script>
+
+<!-- Navigation logic -->
 <script src="{{ url_for('static', filename='JS/navigation.js') }}"></script>
 
-<script src="{{ url_for('static', filename='JS/render.js') }}"></script>
+<!-- Upload logic -->
+<script src="{{ url_for('static', filename='JS/upload.js') }}"></script>
 
+<!-- File Summary logic -->
+<script src="{{ url_for('static', filename='JS/summary.js') }}"></script>
+
+<!-- File Preview logic -->
 <script src="{{ url_for('static', filename='JS/preview.js') }}"></script>
 
-<script src="{{ url_for('static', filename='JS/upload.js') }}"></script>
-<script src="{{ url_for('static', filename='JS/examples.js') }}"></script>
+<!-- Diagrams page logic -->
 <script src="{{ url_for('static', filename='JS/diagrams.js') }}"></script>
+
+<!-- Barcodes page logic -->
 <script src="{{ url_for('static', filename='JS/barcodes.js') }}"></script>
+
+<!-- Example page logic -->
+<script src="{{ url_for('static', filename='JS/examples.js') }}"></script>
 
 </body>
 </html>

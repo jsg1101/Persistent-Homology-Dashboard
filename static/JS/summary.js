@@ -2,18 +2,18 @@
 
 
 // =========================================================
-// UI UPDATE (summary panel)
+// UI UPDATE (summary panel and preview panel)
 // =========================================================
-function updateUI(file, r) {
+function renderSummary(file, r) {
 
 
-    // 1. Reveal all file summary cards
+    // Reveal all file summary cards
     fileSummaries.forEach(function(fileSummary) {
       fileSummary.classList.remove("hidden");
     });
 
     // Reveal the preview panel
-    filePreview.classList.remove("hidden");
+    // filePreview.classList.remove("hidden");
   
     // Update all file names
     fileNames.forEach(function(fileName) {
@@ -53,27 +53,3 @@ function updateUI(file, r) {
 
   }
   
-  
-  
-  // =========================================================
-  // FULL TABLE RENDERING (all rows)
-  // =========================================================
-  // function renderTable(data) {
-  //   table.innerHTML = "";
-  
-  //   data.forEach((row, i) => {
-  //     const tr = document.createElement("tr");
-  
-  //     row.forEach(c => {
-  //       const el = document.createElement(i === 0 ? "th" : "td");
-  //       el.textContent = c.value;
-  
-  //       if (c.type === "missing") el.classList.add("cell-missing");
-  //       if (c.type === "invalid") el.classList.add("cell-invalid");
-  
-  //       tr.appendChild(el);
-  //     });
-  
-  //     table.appendChild(tr);
-  //   });
-  // }
