@@ -23,7 +23,6 @@ dropZone.addEventListener("drop", e => {
 
 // =========================================================
 // FILE HANDLING PIPELINE
-// Reads file → parses → sanitizes → analyzes → renders UI
 // =========================================================
 function handleFile(file) {
 
@@ -35,7 +34,7 @@ function handleFile(file) {
  
   spinner.classList.remove("hidden");
  
-  const reader = new FileReader();
+  // const reader = new FileReader();
   
   const formData = new FormData();
   formData.append("file", file);
@@ -60,7 +59,7 @@ function handleFile(file) {
     renderPreview(result.data);
  
   
- 
+    // r.total_issues
     // diagramCards.forEach(card => {
     //   card.classList.remove("hidden");
     // });
