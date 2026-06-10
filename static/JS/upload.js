@@ -53,6 +53,17 @@ function handleFile(file) {
     }
  
     window.__lastData = result.data;
+
+    // Hide Options Cards
+    optionCards.forEach(function(optionCard) {
+      optionCard.classList.add("hidden");
+    });
+
+    // Hide plots
+    plotCards.forEach(function(plotCard) {
+      plotCard.classList.add("hidden");
+    });
+
  
     renderSummary(file, result);
  

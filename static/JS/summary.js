@@ -56,6 +56,7 @@ function renderSummary(file, result) {
     fileSummaries.forEach(card => {
 
       const totalBox = card.querySelector(".issue-box.total");
+      const totalLabel = document.querySelector(".issue-box.total p");
       const statusIcon = card.querySelector(".issue-status-icon");
   
       totalBox.classList.remove("success", "error");
@@ -63,11 +64,20 @@ function renderSummary(file, result) {
       if (result.total_issues === 0) {
   
           totalBox.classList.add("success");
+          totalLabel.textContent = "No Issues Found";
           statusIcon.textContent = "✅";
+
+          // Reveal all Options card
+          optionCards.forEach(function(optionCard) {
+            optionCard.classList.remove("hidden");
+          });
+          
+
   
       } else {
   
           totalBox.classList.add("error");
+          totalLabel.textContent = "Issues Detected";
           statusIcon.textContent = "❌";
   
       }

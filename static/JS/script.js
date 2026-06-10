@@ -65,6 +65,13 @@ const diagramCards = document.querySelectorAll("#diagrams-page .card");
 const barcodeCards = document.querySelectorAll("#barcodes-page .card");
 
 
+// Options Cards
+const optionCards = document.querySelectorAll(".options");
+
+// Plot Cards
+const plotCards = document.querySelectorAll(".plots");
+
+
 // Navigation
 const navItems = document.querySelectorAll(".nav-item");
 const pages = document.querySelectorAll(".page");
