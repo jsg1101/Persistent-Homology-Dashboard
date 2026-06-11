@@ -16,7 +16,7 @@ def validate_data(data):
     return None
 
 # Compute PH and create diagrams
-def ph_diagram (data):
+def ph_diagram (data,dimension,prime,metric):
 
 
     # print(type(data))
@@ -31,7 +31,7 @@ def ph_diagram (data):
     # print(data_array)
 
 
-    result = ripser(data_array)
+    result = ripser(data_array, coeff=prime, maxdim=dimension, metric=metric)
     dgms = result['dgms']
     print(dgms)
 

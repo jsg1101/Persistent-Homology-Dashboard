@@ -64,7 +64,7 @@ function renderSummary(file, result) {
       if (result.total_issues === 0) {
   
           totalBox.classList.add("success");
-          totalLabel.textContent = "No Issues Found";
+          // totalLabel.textContent = "No Issues Found";
           statusIcon.textContent = "✅";
 
           // Reveal all Options card
@@ -77,7 +77,7 @@ function renderSummary(file, result) {
       } else {
   
           totalBox.classList.add("error");
-          totalLabel.textContent = "Issues Detected";
+          // totalLabel.textContent = "Issues Detected";
           statusIcon.textContent = "❌";
   
       }

@@ -67,13 +67,24 @@ def diagrams():
 
     print("diagrams")
 
-    file = request.files.get("file")
+    print("FILES:", request.files)
+    print("FORM:", request.form)
 
-    if not file:
+    data = request.files.get("file")
+
+    dimension = int(request.form.get("dimension"))
+    metric = request.form.get("metric")
+    prime = int(request.form.get("prime"))
+
+    print("dimension:", dimension)
+    print("metric:", metric)
+    print("prime:", prime)
+
+    if not data:
         return {"error": "No file supplied"}, 400
 
     # Create plot
-    image_bytes = ph.ph_diagram(file)
+    image_bytes = ph.ph_diagram(data,dimension,prime,metric)
 
     return send_file(
         image_bytes,
