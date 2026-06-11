@@ -18,35 +18,18 @@ def validate_data(data):
 # Compute PH and create diagrams
 def ph_diagram (data,dimension,prime,metric):
 
-
-    # print(type(data))
-    # print(data)
-
     df = pd.read_csv(data)
 
     data_array = df.to_numpy()
 
-    # print(type(data_array))
-    # print("shape:" + str(data_array.shape))
-    # print(data_array)
-
-
     result = ripser(data_array, coeff=prime, maxdim=dimension, metric=metric)
     dgms = result['dgms']
-    print(dgms)
+    # print(dgms)
 
     fig, ax = plt.subplots(figsize=(5, 5))
     plot_diagrams(dgms, ax=ax)
 
-    # plt.figure(figsize=(5,5))
-    # plot_diagrams(dgms)
-    # plot_diagrams(dgms, show=True)
-
-
-    # 3. Plot the data as a barcode instead of a diagram
-    # persim.plot_diagrams(diagrams, barcode=True)
-
-
+    
     buffer = io.BytesIO()
 
     fig.savefig(buffer, format="png")
@@ -59,13 +42,13 @@ def ph_diagram (data,dimension,prime,metric):
 #########################################
 ## Barcode
 ########################################
-def barcode (data):
+def barcode (data,dimension,prime,metric):
 
     df = pd.read_csv(data)
 
     data_array = df.to_numpy()
     
-    diagrams = ripser(data_array)['dgms']
+    diagrams = ripser(data_array, coeff=prime, maxdim=dimension, metric=metric)['dgms']
 
     # 2. Extract H0 and H1 diagrams
     # (Replacing infinity values with a readable cap for plotting)

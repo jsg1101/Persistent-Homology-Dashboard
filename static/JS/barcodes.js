@@ -1,8 +1,3 @@
-
-
-
-
-
 const barcodeBtn = document.getElementById("barcodeBtn");
 
 barcodeBtn.addEventListener("click", async () => {
@@ -14,8 +9,34 @@ barcodeBtn.addEventListener("click", async () => {
         return;
     }
 
+    const dimension =
+        document.querySelector(
+            'input[name="dimension_barcodes"]:checked'
+        ).value;
+
+    const metric =
+        document.querySelector(
+            'input[name="metric_barcodes"]:checked'
+        ).value;
+
+    const prime =
+        document.getElementById("prime_barcodes").value;
+
+    if (!isPrime(prime)) {
+
+        alert(
+            `${prime} is not a prime number.\n\nPlease enter a prime coefficient.`
+        );
+
+        return;
+    }
+
     const formData = new FormData();
+
     formData.append("file", file);
+    formData.append("dimension", dimension);
+    formData.append("metric", metric);
+    formData.append("prime", prime);
 
     const response = await fetch("/barcodes", {
         method: "POST",
@@ -32,4 +53,9 @@ barcodeBtn.addEventListener("click", async () => {
     const imageUrl = URL.createObjectURL(blob);
 
     document.getElementById("barcode-image").src = imageUrl;
+
+    document
+        .getElementById("barcode-container")
+        .classList.remove("hidden");
+
 });
