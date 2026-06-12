@@ -35,7 +35,7 @@ def noisy_S1() :
 # 3D 2-sphere data set
 def S2():
 
-    num_points = 1500
+    num_points = 500
     radius = 2.0
 
     # Generate points uniformly distributed across a sphere's surface
@@ -239,7 +239,7 @@ def plot_data(data):
 
 
 
-data = Torus()
+data = S2()
 print(type(data))
 
 
@@ -249,7 +249,7 @@ print(arr.shape)
 print(arr.size)
 
 np.savetxt(
-    "S1xS1.csv",
+    "500S2.csv",
     arr,
     delimiter=",",
     fmt="%g"
@@ -268,4 +268,4 @@ my_plot = plot_data(data)
 my_plot.show()
 
 # Save to interactive HTML file
-my_plot.write_html("S1xS1.html")
+my_plot.write_html("500S2.html")

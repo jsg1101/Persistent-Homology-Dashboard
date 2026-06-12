@@ -9,6 +9,12 @@ barcodeBtn.addEventListener("click", async () => {
         return;
     }
 
+    // Hide previous barcode (if one exists)
+    document
+        .getElementById("barcode-container")
+        .classList.add("hidden");
+
+    // Gather form data
     const dimension =
         document.querySelector(
             'input[name="dimension_barcodes"]:checked'
@@ -22,6 +28,7 @@ barcodeBtn.addEventListener("click", async () => {
     const prime =
         document.getElementById("prime_barcodes").value;
 
+    // Prime check
     if (!isPrime(prime)) {
 
         alert(
@@ -31,31 +38,64 @@ barcodeBtn.addEventListener("click", async () => {
         return;
     }
 
-    const formData = new FormData();
+    // Show spinner and disable Btn
+    const loading =
+        document.getElementById("barcode-loading");
 
-    formData.append("file", file);
-    formData.append("dimension", dimension);
-    formData.append("metric", metric);
-    formData.append("prime", prime);
+    loading.classList.remove("hidden");
 
-    const response = await fetch("/barcodes", {
-        method: "POST",
-        body: formData
-    });
+    barcodeBtn.disabled = true;
+    barcodeBtn.textContent = "Computing...";
 
-    if (!response.ok) {
-        console.error("Barcode generation failed");
-        return;
+    try {
+
+        // Fetch
+        const formData = new FormData();
+
+        formData.append("file", file);
+        formData.append("dimension", dimension);
+        formData.append("metric", metric);
+        formData.append("prime", prime);
+
+        const response = await fetch("/barcodes", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error("Barcode generation failed");
+        }
+
+        const blob = await response.blob();
+
+        // Plot
+        const imageUrl = URL.createObjectURL(blob);
+
+        document.getElementById("barcode-image").src = imageUrl;
+
+        document
+            .getElementById("barcode-container")
+            .classList.remove("hidden");
+
     }
+    catch (err) {
 
-    const blob = await response.blob();
+        console.error(err);
 
-    const imageUrl = URL.createObjectURL(blob);
+        alert(
+            err.message ||
+            "An unexpected error occurred while generating the barcode."
+        );
 
-    document.getElementById("barcode-image").src = imageUrl;
+    }
+    finally {
 
-    document
-        .getElementById("barcode-container")
-        .classList.remove("hidden");
+        // Hide spinner and enable Btn
+        loading.classList.add("hidden");
+
+        barcodeBtn.disabled = false;
+        barcodeBtn.textContent = "Compute Barcode";
+
+    }
 
 });
