@@ -1,4 +1,15 @@
+// =========================================================
+// Plotly Resize Observer (GLOBAL - define once)
+// =========================================================
 
+// const resizeObserver = new ResizeObserver(entries => {
+//     for (const entry of entries) {
+//         const el = entry.target;
+//         if (el.__plotly__) {
+//             Plotly.Plots.resize(el);
+//         }
+//     }
+// });
 
 
 document.querySelectorAll(".download-btn").forEach(btn => {
@@ -45,8 +56,7 @@ document.querySelectorAll(".download-btn").forEach(btn => {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-
+function initExamplePlots() {
     const cards = document.querySelectorAll(".plot-card");
 
     for (const card of cards) {
@@ -56,8 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!container || !script) continue;
 
-        let figure;
+        if (container.__rendered) continue;
 
+        let figure;
         try {
             figure = JSON.parse(script.textContent);
         } catch (e) {
@@ -65,23 +76,21 @@ document.addEventListener("DOMContentLoaded", () => {
             continue;
         }
 
-        delete figure.layout?.width;
-        delete figure.layout?.height;
+        Plotly.newPlot(container, figure.data, figure.layout, {
+            responsive: true,
+            displayModeBar: true
+        });
 
-        figure.layout = {
-            ...figure.layout,
-            autosize: true,
-            margin: { l: 0, r: 0, t: 0, b: 0 }
-        };
-
-        Plotly.newPlot(
-            container,
-            figure.data,
-            figure.layout,
-            {
-                responsive: true,
-                displayModeBar: true
-            }
-        );
+        container.__rendered = true;
     }
-});
+}
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     // only initialize if page is already visible
+//     const examplesPage = document.getElementById("examples-page");
+
+//     if (examplesPage.classList.contains("active-page")) {
+//         initExamplePlots();
+//     }
+// });

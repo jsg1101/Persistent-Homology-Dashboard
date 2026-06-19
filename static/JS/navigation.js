@@ -29,12 +29,23 @@ navItems.forEach(item => {
         activePage.classList.add("active-page");
       }
 
-
       if (pageName === "examples") {
-        document.querySelectorAll(".plotly-container").forEach(container => {
-            Plotly.Plots.resize(container);
-        });
+        initExamplePlots();
       }
+
+      // if (pageName === "examples") {
+
+      //   requestAnimationFrame(() => {
+      //       requestAnimationFrame(() => {
+      //           document.querySelectorAll(".plotly-container").forEach(container => {
+      //               if (container.__plotly__) {
+      //                   Plotly.Plots.resize(container);
+      //               }
+      //           });
+      //       });
+      //   });
+    
+      // }
 
       document.body.scrollTo({
         top: 0,
