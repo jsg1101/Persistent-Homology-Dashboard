@@ -4,6 +4,10 @@
 import numpy as np
 import plotly.graph_objects as go
 
+import json
+
+
+
 # 3D circle (ring) data set
 def S1() :
 
@@ -29,7 +33,7 @@ def noisy_S1() :
     y = radius * np.sin(theta) + np.random.normal(0, 0.15, num_points)
     z = np.zeros(num_points) + np.random.normal(0, 0.15, num_points)
 
-    return (x,y,z)
+    return (x,y,z,theta)
 
 
 # 3D 2-sphere data set
@@ -225,6 +229,7 @@ def plot_data(data):
             
             
         ),
+        autosize=True,
         # margin=dict(l=0, r=0, b=0, t=40),
         margin=dict(l=0, r=0, b=0, t=0),
         showlegend=False, # Remove the sidebar legend
@@ -239,7 +244,7 @@ def plot_data(data):
 
 
 
-data = S2()
+data = noisy_S1()
 print(type(data))
 
 
@@ -249,7 +254,7 @@ print(arr.shape)
 print(arr.size)
 
 np.savetxt(
-    "500S2.csv",
+    "noisy_S1.csv",
     arr,
     delimiter=",",
     fmt="%g"
@@ -268,4 +273,8 @@ my_plot = plot_data(data)
 my_plot.show()
 
 # Save to interactive HTML file
-my_plot.write_html("500S2.html")
+# my_plot.write_html("500S2.html")
+fig_json = my_plot.to_json()
+
+with open("static/plots/noisy_S1.json", "w") as f:
+    f.write(fig_json)

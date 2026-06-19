@@ -39,3 +39,49 @@ document.querySelectorAll(".download-btn").forEach(btn => {
     });
 
 });
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cards = document.querySelectorAll(".plot-card");
+
+    for (const card of cards) {
+
+        const container = card.querySelector(".plotly-container");
+        const script = card.querySelector(".plot-data");
+
+        if (!container || !script) continue;
+
+        let figure;
+
+        try {
+            figure = JSON.parse(script.textContent);
+        } catch (e) {
+            console.error("Invalid plot JSON", e);
+            continue;
+        }
+
+        delete figure.layout?.width;
+        delete figure.layout?.height;
+
+        figure.layout = {
+            ...figure.layout,
+            autosize: true,
+            margin: { l: 0, r: 0, t: 0, b: 0 }
+        };
+
+        Plotly.newPlot(
+            container,
+            figure.data,
+            figure.layout,
+            {
+                responsive: true,
+                displayModeBar: true
+            }
+        );
+    }
+});

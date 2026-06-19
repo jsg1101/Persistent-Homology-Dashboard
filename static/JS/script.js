@@ -15,11 +15,11 @@ window.addEventListener("DOMContentLoaded", () => {
   // force default radio states
   // diagram option card 
   document.querySelector('input[name="dimension_diagram"][value="1"]').checked = true;
-  document.querySelector('input[name="metric_diagram"][value="0"]').checked = true;
+  document.querySelector('input[name="metric_diagram"][value="euclidean"]').checked = true;
   document.getElementById("prime_diagram").value = 2;
   // barcodes option card 
   document.querySelector('input[name="dimension_barcodes"][value="1"]').checked = true;
-  document.querySelector('input[name="metric_barcodes"][value="0"]').checked = true;
+  document.querySelector('input[name="metric_barcodes"][value="euclidean"]').checked = true;
   document.getElementById("prime_barcodes").value = 2;
 
 });

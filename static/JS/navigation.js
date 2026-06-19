@@ -29,6 +29,13 @@ navItems.forEach(item => {
         activePage.classList.add("active-page");
       }
 
+
+      if (pageName === "examples") {
+        document.querySelectorAll(".plotly-container").forEach(container => {
+            Plotly.Plots.resize(container);
+        });
+      }
+
       document.body.scrollTo({
         top: 0,
         behavior: "smooth"

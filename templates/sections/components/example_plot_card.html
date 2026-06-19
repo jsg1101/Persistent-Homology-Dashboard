@@ -37,11 +37,14 @@
     </div>
 
     <div class="plot-area">
-        <iframe
-            src="{{ url_for('static', filename=plot_path) }}"
-            scrolling="no"
-            loading="lazy">
-        </iframe>
+        <div class="plotly-container" id="{{ title|replace(' ', '-') }}"></div>
+
+    <script type="application/json" class="plot-data">
+        {% if figure is defined %}
+            {{ figure | tojson }}
+        {% endif %}
+    </script>
+
     </div>
 
 </div>

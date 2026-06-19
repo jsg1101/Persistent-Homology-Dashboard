@@ -13,7 +13,7 @@
             size="2.1 KB",
             rows="75",
             cols="3",
-            plot_path="plots/S1.html"
+            figure=plots["S1"]
         %}
             {% include 'sections/components/example_plot_card.html' %}
         {% endwith %}
@@ -28,7 +28,7 @@
             size="25 KB",
             rows="1000",
             cols="3",
-            plot_path="plots/noisy_S1.html"
+            figure=plots["noisy_S1"]
         %}
             {% include 'sections/components/example_plot_card.html' %}
         {% endwith %}
@@ -37,7 +37,7 @@
 
 
         <!-- S2 Plot Card ------------------------------------------------------->
-        {% with
+        <!-- {% with
             title="S<sup>2</sup>",
             description="1500 points sampled from a sphere in &#8477;<sup>3</sup>",
             details="radius R = 2",
@@ -48,13 +48,13 @@
             plot_path="plots/S2.html"
         %}
             {% include 'sections/components/example_plot_card.html' %}
-        {% endwith %}
+        {% endwith %} -->
         
        
 
         <!-- S1xS1 Plot Card ---------------------------------------------------->
         
-        {% with
+        <!-- {% with
             title="S<sup>1</sup> x S<sup>1</sup>",
             description="1000 points sampled from a torus in &#8477;<sup>3</sup>",
             details="Major radius R = 2<br>Minor radius r = 0.5",
@@ -66,7 +66,7 @@
         %}
             {% include 'sections/components/example_plot_card.html' %}
         {% endwith %}
-        
+         -->
         
 
     </div>

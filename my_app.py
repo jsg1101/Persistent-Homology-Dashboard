@@ -4,6 +4,8 @@ from flask import Flask, Response, render_template, request, jsonify
 from flask import abort, send_from_directory,send_file
 from werkzeug.exceptions import RequestEntityTooLarge
 import os
+import json
+
 
 
 # Local Python Imports
@@ -25,10 +27,22 @@ app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 ##################################
 @app.route("/", methods=['GET',"POST"])
 def home():
-    
-    return render_template('dashboard.html')
+
+    plots = {
+        "S1": load_plot("S1"),
+        "noisy_S1": load_plot("noisy_S1"),
+        # "s2": load_plot("S2.json"),
+        # "torus": load_plot("S1xS1.json"),
+    }
+    # print("PLOTS:", plots)
+    # print(type(plots["s1"]))
+    # print(list(plots["s1"].keys()))
+    return render_template('dashboard.html',plots=plots)
 
 
+def load_plot(name):
+    with open(f"static/plots/{name}.json") as f:
+        return json.load(f)
 
 
 ##########################
