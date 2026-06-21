@@ -58,7 +58,7 @@ def S2():
 
 # mapping the color to theta will color the donut in rings wrapping around the tube, while
 # mapping the color to phi will color it in wedge slices around the main ring.
-def Torus(num_points=1000, R=2.0, r=.5):
+def Torus(num_points=750, R=2.0, r=.75):
     """
     Generates a 3D point cloud of a torus (S1 x S1).
     R: Major radius (distance from the center of the tube to the center of the torus)
@@ -244,7 +244,7 @@ def plot_data(data):
 
 
 
-data = noisy_S1()
+data = Torus()
 print(type(data))
 
 
@@ -254,7 +254,7 @@ print(arr.shape)
 print(arr.size)
 
 np.savetxt(
-    "noisy_S1.csv",
+    "S1xS1.csv",
     arr,
     delimiter=",",
     fmt="%g"
@@ -276,5 +276,5 @@ my_plot.show()
 # my_plot.write_html("500S2.html")
 fig_json = my_plot.to_json()
 
-with open("static/plots/noisy_S1.json", "w") as f:
+with open("static/plots/S1xS1.json", "w") as f:
     f.write(fig_json)

@@ -31,8 +31,8 @@ def home():
     plots = {
         "S1": load_plot("S1"),
         "noisy_S1": load_plot("noisy_S1"),
-        # "s2": load_plot("S2.json"),
-        # "torus": load_plot("S1xS1.json"),
+        "S2": load_plot("S2"),
+        "S1xS1": load_plot("S1xS1"),
     }
     # print("PLOTS:", plots)
     # print(type(plots["s1"]))
