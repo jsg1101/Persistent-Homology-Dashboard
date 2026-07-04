@@ -15,6 +15,58 @@ function isPrime(n) {
 }
 
 
+// =========================================================
+// Threshold Option
+// =========================================================
+
+// Enable/Disable threshold input
+
+const useThresholdDiagram =
+    document.getElementById("use-threshold-diagram");
+
+const thresholdDiagram =
+    document.getElementById("threshold_diagram");
+
+useThresholdDiagram.addEventListener("change", () => {
+
+    thresholdDiagram.disabled =
+        !useThresholdDiagram.checked;
+
+    if (!useThresholdDiagram.checked) {
+
+        thresholdDiagram.value = "";
+
+    }
+
+});
+
+
+// =========================================================
+// Subsampling Option
+// =========================================================
+
+// Enable/Disable subsampling input
+
+const useSubsampleDiagram =
+    document.getElementById("use-subsample-diagram");
+
+const subsampleDiagram =
+    document.getElementById("subsample_diagram");
+
+useSubsampleDiagram.addEventListener("change", () => {
+
+    subsampleDiagram.disabled =
+        !useSubsampleDiagram.checked;
+
+    if (!useSubsampleDiagram.checked) {
+
+        subsampleDiagram.value = "";
+
+    }
+
+});
+
+
 
 const diagramBtn = document.getElementById("diagramBtn");
 
@@ -45,6 +97,17 @@ diagramBtn.addEventListener("click", async () => {
 
     const prime =
         document.getElementById("prime_diagram").value;
+    // Gather optional threshold
+    const threshold =
+        useThresholdDiagram.checked
+        ? thresholdDiagram.value
+        : "inf";
+
+    // Gather optional subsampling
+    const subsample =
+        useSubsampleDiagram.checked
+        ? subsampleDiagram.value
+        : "";
 
     // Prime check
     if (!isPrime(prime)) {
@@ -74,6 +137,8 @@ diagramBtn.addEventListener("click", async () => {
         formData.append("dimension", dimension);
         formData.append("metric", metric);
         formData.append("prime", prime);
+        formData.append("threshold", threshold);
+        formData.append("subsample", subsample);
 
         const response = await fetch("/diagrams", {
             method: "POST",

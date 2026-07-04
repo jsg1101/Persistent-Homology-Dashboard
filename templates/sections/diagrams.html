@@ -9,80 +9,181 @@
 
 
   <!-- Diagram Options -->
-  
   <div  class="options card hidden">
 
-    <!-- TOP ROW -->
-    <div class="options-top">
+    <!-- Card Title -->
+    <h2 class="options-title">Options</h2>
 
-        <!-- COLUMN 1 -->
-        <div class="options-col title-col">
-        <h2 class="options-title">Options</h2>
+    <!-- Options Grid -->
+    <div class="options-grid">
+
+      <!-- Dimension -->
+      <div class="options-col">
+
+        <!-- Option Title -->
+        <label for="dimension" class="col-title"><b>Dimension</b></label><br>
+
+        <!-- H0 -->
+        <label >
+          <input type="radio" name="dimension_diagram" value="0" >
+            <!-- H<sub>0</sub> -->
+            $H_0$
+        </label>
+        
+        <!-- H0 and H1 -->
+        <label >
+          <input type="radio" name="dimension_diagram" value="1" checked>
+          <!-- H<sub>0</sub> and H<sub>1</sub> -->
+          $H_0$ and $H_1$
+        </label>
+        
+        <!-- H0,H1, and H2 -->
+        <label >
+          <input type="radio" name="dimension_diagram" value="2">
+          <!-- H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub>  -->
+          $H_0$, $H_1$, and $H_2$
+        </label>
+
+      </div>
+
+      <!-- Metric  -->
+      <div class="options-col">
+
+        <!-- Option Title -->
+        <label for="metric" class="col-title"><b>Metric</b></label><br>
+
+        <label >
+          <input type="radio" name="metric_diagram" value="euclidean" checked>
+          Euclidean
+        </label>
+        
+        <label >
+          <input type="radio" name="metric_diagram" value="cosine">
+          Cosine
+        </label>
+        
+        <label >
+          <input type="radio" name="metric_diagram" value="manhattan">
+          Manhattan 
+          </label>
+      </div>
+
+      <!-- Coefficients -->
+      <div class="options-col">
+
+        <!-- Option Title -->
+        <!-- <label for="Coeff" class="col-title"><b>Coefficients in $\mathbb{Z}/p\mathbb{Z}$</b></label> -->
+        <label for="Coeff" class="col-title">
+          <b>Coefficients in</b>
+          <span class="math-inline">$\mathbb{Z}/p\mathbb{Z}$</span>
+        </label>
+        
+        
+        <div class="input-row">
+          <span>$p$ = </span>
+          <input
+              type="number"
+              id="prime_diagram"
+              name="prime_diagram"
+              min="2"
+              step="1"
+              value="2"
+          >
         </div>
 
-        <!-- COLUMN 2 -->
-        <div class="options-col">
-          <label for="dimension"><b>Dimension</b></label><br>
+        <!-- <span class="subtitle">prime p</span> -->
+      </div>
 
-            <label >
-              <input type="radio" name="dimension_diagram" value="0" >
-                H<sub>0</sub>
-            </label>
-        
-            <label >
-              <input type="radio" name="dimension_diagram" value="1" checked>
-              H<sub>0</sub> and H<sub>1</sub>
-            </label>
-        
-            <label >
-              <input type="radio" name="dimension_diagram" value="2">
-              H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> 
-            </label>
+      <!-- COLUMN 3 -->
+      <div class="options-col">
 
-        </div>
+          <!-- Option Title -->
+          <label for="threshold" class="col-title"><b> Threshold</b></label>
+          <!-- <span class="subtitle">
+            Default: &infin;
+          </span> -->
 
-        <!-- COLUMN 3 -->
-        <div class="options-col">
-          <label for="metric"><b>Metric</b></label><br>
-
-            <label >
-              <input type="radio" name="metric_diagram" value="euclidean" checked>
-                Euclidean
-            </label>
-        
-            <label >
-              <input type="radio" name="metric_diagram" value="cosine">
-                Cosine
-            </label>
-        
-            <label >
-              <input type="radio" name="metric_diagram" value="manhattan">
-                Manhattan 
-            </label>
-        </div>
-
-        <!-- COLUMN 4 -->
-        <div class="options-col">
-          <label for="Coeff"><b>Coefficients in Z/pZ</b></label>
-          <span class="subtitle">(for prime p)</span>
-
-        
-          <div class="input-row">
-            <span>p = </span>
+          <!-- Enable Threshold -->
+          <label>
             <input
-                type="number"
-                id="prime_diagram"
-                name="prime_diagram"
-                min="2"
-                step="1"
-                value="2"
+              type="checkbox"
+              id="use-threshold-diagram"
+              name="use-threshold-diagram"
             >
+            Enable
+          </label>
+
+          <!-- Threshold Value -->
+          <div class="input-row">
+
+            <span>$\epsilon$ =</span>
+
+            <input
+              type="number"
+              id="threshold_diagram"
+              name="threshold_diagram"
+              step="0.01"
+              min="0"
+              placeholder="∞"
+              disabled
+            >
+            
+
           </div>
+          <span class="subtitle">
+            Default: &infin;
+          </span>
         </div>
+
+        
+
+        <!-- COLUMN 5 -->
+        <div class="options-col">
+
+        <!-- Option Title -->
+        <label for="subsampling" class="col-title"><b>Subsampling</b></label>
+
+        
+
+        <!-- Enable Subsampling -->
+        <label>
+
+          <input
+            type="checkbox"
+            id="use-subsample-diagram"
+            name="use-subsample-diagram"
+          >
+
+          Enable
+
+        </label>
+
+        <!-- Number of Sample Points -->
+        <div class="input-row">
+
+          <span>$n$ =</span>
+
+          <input
+            type="number"
+            id="subsample_diagram"
+            name="subsample_diagram"
+            min="2"
+            step="1"
+            placeholder="Points"
+            disabled
+            style="width: 120px;"
+          >
+          
+
+        </div>
+        <span class="subtitle">
+          Default: All points
+        </span>
+</div>
 
     </div>
 
-    <!-- Data quality overview -->
+    
     <!-- Button -->
     <div class = "diagramBtn_container">
       <button id ="diagramBtn">
@@ -106,5 +207,5 @@
   </div>
 
   
-
+  
 </div>
