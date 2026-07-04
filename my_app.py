@@ -89,10 +89,16 @@ def diagrams():
     dimension = int(request.form.get("dimension"))
     metric = request.form.get("metric")
     prime = int(request.form.get("prime"))
+    threshold = float(request.form.get("threshold"))
+    if request.form.get("subsample"):
+        subsample = int(request.form.get("subsample"))
 
     print("dimension:", dimension)
     print("metric:", metric)
     print("prime:", prime)
+    print("threshold:", threshold)
+    if request.form.get("subsample"):
+        print("subsample:", subsample)
 
     if not data:
         return {"error": "No file supplied"}, 400

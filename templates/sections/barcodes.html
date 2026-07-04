@@ -19,28 +19,38 @@
 
         <!-- Dimension -->
       <div class="options-col">
-        <label for="dimension"><b>Dimension</b></label><br>
 
+        <!-- Option Title -->
+        <label for="dimension" class="col-title"><b>Dimension</b></label><br>
+
+          <!-- H0 -->
           <label >
             <input type="radio" name="dimension_barcodes" value="0" >
-              H<sub>0</sub>
+              <!-- H<sub>0</sub> -->
+              $H_0$
           </label>
       
+          <!-- H0 and H1 -->
           <label >
             <input type="radio" name="dimension_barcodes" value="1" checked>
-            H<sub>0</sub> and H<sub>1</sub>
+            <!-- H<sub>0</sub> and H<sub>1</sub> -->
+            $H_0$ and $H_1$
           </label>
       
+          <!-- H0,H1, and H2 -->
           <label >
             <input type="radio" name="dimension_barcodes" value="2">
-            H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> 
+            <!-- H<sub>0</sub>, H<sub>1</sub>, and H<sub>2</sub> -->
+            $H_0$, $H_1$, and $H_2$
           </label>
 
       </div>
 
-      <!-- COLUMN 3 -->
+      <!-- Metric  -->
       <div class="options-col">
-        <label for="metric"><b>Metric</b></label><br>
+
+        <!-- Option Title -->
+        <label for="metric" class="col-title"><b>Metric</b></label><br>
 
           <label >
             <input type="radio" name="metric_barcodes" value="euclidean" checked>
@@ -58,14 +68,18 @@
           </label>
       </div>
 
-      <!-- COLUMN 4 -->
+      <!-- Coefficients -->
       <div class="options-col">
-        <label for="Coeff"><b>Coefficients in Z/pZ</b></label>
-        <span class="subtitle">(for prime p)</span>
+
+        <!-- Option Title -->
+        <label for="Coeff" class="col-title">
+          <b>Coefficients in</b>
+          <span class="math-inline">$\mathbb{Z}/p\mathbb{Z}$</span>
+        </label>
 
       
         <div class="input-row">
-          <span>p = </span>
+          <span>$p$ = </span>
           <input
               type="number"
               id="prime_barcodes"
@@ -76,9 +90,91 @@
           >
         </div>
       </div>
+      <!-- Threshold -->
+    <div class="options-col">
+
+      <!-- Option Title -->
+      <label for="threshold" class="col-title"><b> Threshold</b></label>
+      
+      <!-- Enable Threshold -->
+      <label>
+        <input
+          type="checkbox"
+          id="use-threshold-barcode"
+          name="use-threshold-barcode"
+        >
+        Enable
+      </label>
+
+      <!-- Threshold Value -->
+      <div class="input-row">
+
+        <span>$\epsilon$ =</span>
+
+        <input
+          type="number"
+          id="threshold_barcode"
+          name="threshold_barcode"
+          step="0.01"
+          min="0"
+          placeholder="∞"
+          disabled
+        >
+        
+
+      </div>
+      <span class="subtitle">
+        Default: &infin;
+      </span>
+  </div>
+
+  <!-- Subsample -->
+  <div class="options-col">
+
+    <!-- Option Title -->
+    <label for="subsampling" class="col-title"><b>Subsampling</b></label>
+
+      
+
+      <!-- Enable Subsampling -->
+      <label>
+
+        <input
+          type="checkbox"
+          id="use-subsample-barcode"
+          name="use-subsample-barcode"
+        >
+
+        Enable
+
+      </label>
+
+      <!-- Number of Sample Points -->
+      <div class="input-row">
+
+        <span>$n$ =</span>
+
+        <input
+          type="number"
+          id="subsample_barcode"
+          name="subsample_barcode"
+          min="2"
+          step="1"
+          placeholder="Points"
+          disabled
+          style="width: 120px;"
+        >
+        
+
+      </div>
+      <span class="subtitle">
+        Default: All points
+      </span>
+    </div>
 
     </div>
 
+    
     <!-- Button -->
     <div class = "barcodeBtn_container">
       <button id ="barcodeBtn">
@@ -94,6 +190,7 @@
     
   </div>
 
+  <!-- Barcode -->
   <div id="barcode-container" class=" plots card hidden">
     <img id="barcode-image" />
   </div>
