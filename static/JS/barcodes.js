@@ -1,3 +1,64 @@
+// =========================================================
+// Threshold Option
+// =========================================================
+
+// Enable/Disable threshold input
+
+const useThresholdBarcode =
+    document.getElementById("use-threshold-barcode");
+
+const thresholdBarcode =
+    document.getElementById("threshold_barcode");
+
+useThresholdBarcode.addEventListener("change", () => {
+
+    thresholdBarcode.disabled =
+        !useThresholdBarcode.checked;
+
+    if (!useThresholdBarcode.checked) {
+
+        thresholdBarcode.value = "";
+
+    }
+
+});
+
+
+// =========================================================
+// Subsampling Option
+// =========================================================
+
+// Enable/Disable subsampling input
+
+const useSubsampleBarcode =
+    document.getElementById("use-subsample-barcode");
+
+const subsampleBarcode =
+    document.getElementById("subsample_barcode");
+
+useSubsampleBarcode.addEventListener("change", () => {
+
+    subsampleBarcode.disabled =
+        !useSubsampleBarcode.checked;
+
+    if (!useSubsampleBarcode.checked) {
+
+        subsampleBarcode.value = "";
+
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+
 const barcodeBtn = document.getElementById("barcodeBtn");
 
 barcodeBtn.addEventListener("click", async () => {
@@ -28,6 +89,19 @@ barcodeBtn.addEventListener("click", async () => {
     const prime =
         document.getElementById("prime_barcodes").value;
 
+
+    // Gather optional threshold
+    const threshold =
+        useThresholdBarcode.checked
+        ? thresholdBarcode.value
+        : "inf";
+
+    // Gather optional subsampling
+    const subsample =
+        useSubsampleBarcode.checked
+        ? subsampleBarcode.value
+        : "";
+
     // Prime check
     if (!isPrime(prime)) {
 
@@ -56,6 +130,8 @@ barcodeBtn.addEventListener("click", async () => {
         formData.append("dimension", dimension);
         formData.append("metric", metric);
         formData.append("prime", prime);
+        formData.append("threshold", threshold);
+        formData.append("subsample", subsample);
 
         const response = await fetch("/barcodes", {
             method: "POST",
