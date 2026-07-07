@@ -106,10 +106,22 @@ barcodeBtn.addEventListener("click", async () => {
     if (!isPrime(prime)) {
 
         alert(
-            `${prime} is not a prime number.\n\nPlease enter a prime coefficient.`
+            `${prime} is not a prime number.\n\nPlease enter a prime p for Z/pZ..`
         );
 
         return;
+    }
+
+    // Optional Threshold check
+    if (threshold <= 0) {
+
+        alert(
+            `The epsilon thershold must be a positive number.\n\nPlease enter a threshold greater than zero.`
+        );
+
+        return;
+
+
     }
 
     // Show spinner and disable Btn
